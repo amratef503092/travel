@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\LoginController;
@@ -11,7 +12,9 @@ use App\Http\Controllers\CityController;
 
 use App\Http\Controllers\Api\HotelsApi\RegisterHotelsController;
 use App\Http\Controllers\Api\EmailVerficationController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Hotels\HotelsController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +42,15 @@ Route::post('/reset-password', [NewPasswordController::class, 'reset']);
 route::get('/Allhotles',[HotelsController::class,'index']);
 route::post('/Registerhotels',[RegisterHotelsController::class,'register']);
 route::post('/LoginHotels',[LoginHotelController::class,'login']);
-
 route::get('/City',[CityController::class,'index']);
+
+route::get('/categoryID',[CategoryController::class,'index']);
+route::post('/categoryID/insert',[CategoryController::class,'create']);
+route::put('/categoryID/update',[CategoryController::class,'update']);
+route::delete('/categoryID/delete/{id}',[CategoryController::class,'delete']);
+
+// activities
+route::get('/activiy',[ActivityController::class,'index']);
+route::post('/activiy/insert',[ActivityController::class,'create']);
+// route::put('/categoryID/update',[CategoryController::class,'update']);
+// route::delete('/categoryID/delete/{id}',[CategoryController::class,'delete']);

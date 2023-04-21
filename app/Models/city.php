@@ -20,6 +20,5 @@ class city extends Model
 
     public function hotles(){
         $this->hasMany(hotles::class);
-
     }
 }
