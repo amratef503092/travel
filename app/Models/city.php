@@ -21,4 +21,8 @@ class city extends Model
     public function hotles(){
         $this->hasMany(hotles::class);
     }
+    public function activity()
+    {
+        $this->hasMany(Activity::class);
+    }
 }

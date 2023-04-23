@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
     use HasFactory;
-    protected $fillable = ['activityName' ,
+    protected $fillable = [
+    'activityName' ,
     'activityPrice',
     'description',
     'openTime',
@@ -16,11 +17,20 @@ class Activity extends Model
     'locationLang',
     'locationlatitude',
     'category_id',
+    'city_id',
 ];
 
     public function category()
     {
-        return $this->hasOne(Category::class);
+        return $this->hasOne(Category::class ,"id");
+    }
+    public function city()
+    {
+        return $this->hasOne(city::class , "id");
+    }
+    public function review()
+    {
+        return $this->hasMany(ReviewActivity::class);
     }
 
 }

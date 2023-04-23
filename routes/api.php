@@ -52,5 +52,5 @@ route::delete('/categoryID/delete/{id}',[CategoryController::class,'delete']);
 // activities
 route::get('/activiy',[ActivityController::class,'index']);
 route::post('/activiy/insert',[ActivityController::class,'create']);
-// route::put('/categoryID/update',[CategoryController::class,'update']);
-// route::delete('/categoryID/delete/{id}',[CategoryController::class,'delete']);
+route::put('/activiy/update',[ActivityController::class,'update']);
+route::delete('/activiy/delete/{id}',[ActivityController::class,'delete']);

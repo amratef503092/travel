@@ -23,6 +23,8 @@ return new class extends Migration
             $table->text("locationLang");
             $table->text("locationlatitude");
             $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('city_id')->constrained('cities');
+
             $table->timestamps();
         });
     }
