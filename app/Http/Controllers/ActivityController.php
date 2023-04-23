@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ActivityResource;
+use App\Http\Resources\ReviewResource;
 use App\Models\Activity;
 use App\Models\Category;
+use App\Models\ReviewActivity;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -17,6 +19,8 @@ class ActivityController extends Controller
         // $category =  Category ::all();
         $activity =  ActivityResource::collection(Activity::get());
         return $this->apiResponse($activity,"successfully" ,200) ;
+        //   $activity =  ReviewResource::collection(ReviewActivity::get());
+        //  return $activity  ;
     }
     public function create(Request $request)
     {

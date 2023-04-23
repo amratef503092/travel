@@ -66,4 +66,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hotles() {
         $this->hasMany(hotels::class);
     }
+    public function reviewActivity() {
+        $this->hasMany(ReviewActivity::class);
+    }
 }

@@ -23,7 +23,7 @@ class ActivityResource extends JsonResource
             "closeTime" =>$this->closeTime,
             "locationLang" =>$this->locationLang,
             "locationlatitude" =>$this->locationlatitude,
-            "review"=>$this->review,
+            "review"=>ReviewResource::collection($this->review),
             "category"=>$this->category,
             "city"=>$this->city,
 
