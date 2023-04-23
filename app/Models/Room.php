@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class rooms extends Model
-{
+class Room extends Model
+{ protected $casts = [
+    'images' => 'array',
+];
     use HasFactory;
     public function hotles(){
-        $this->hasMany(hotles::class);
+     return   $this->belongsTo(HotelInfo::class,"id");
     }
 }

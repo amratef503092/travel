@@ -1,6 +1,12 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\BookedActivityController;
+use App\Http\Controllers\HotelInfoController;
+use App\Http\Controllers\ReviewHotelController;
+use App\Http\Controllers\RoomsController;
+use App\Models\BookedActivity;
+use App\Models\ReviewHotel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\LoginController;
@@ -54,3 +60,14 @@ route::get('/activiy',[ActivityController::class,'index']);
 route::post('/activiy/insert',[ActivityController::class,'create']);
 route::put('/activiy/update',[ActivityController::class,'update']);
 route::delete('/activiy/delete/{id}',[ActivityController::class,'delete']);
+
+// booked
+route::get('/activiy/booked',[BookedActivityController::class,'index']);
+
+
+//
+route::get('/hotel',[HotelInfoController::class,'index']);
+
+// review Hotel
+route::get('/hotel/review',[ReviewHotelController::class,'index']);
+route::get('/hotel/rooms',[RoomsController::class,'index']);

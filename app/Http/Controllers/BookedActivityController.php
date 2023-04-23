@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\RoomResource;
-use App\Models\Room;
-use App\Models\rooms;
+use App\Http\Resources\BookedActivityResource;
+use App\Models\BookedActivity;
 use Illuminate\Http\Request;
 
-class RoomsController extends Controller
+class BookedActivityController extends Controller
 {
     use apiRsponseFormate;
     /**
@@ -18,9 +17,9 @@ class RoomsController extends Controller
     public function index()
     {
         //
-        $rooms = RoomResource::collection(Room::all());
-        return $this->apiResponse($rooms,"successfuly",200);
 
+        $bookedActivity = BookedActivityResource::collection(BookedActivity::get());
+        return  $this->apiResponse($bookedActivity , "Successfully" , 200);
     }
 
     /**
@@ -47,10 +46,10 @@ class RoomsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\rooms  $rooms
+     * @param  \App\Models\BookedActivity  $bookedActivity
      * @return \Illuminate\Http\Response
      */
-    public function show(rooms $rooms)
+    public function show(BookedActivity $bookedActivity)
     {
         //
     }
@@ -58,10 +57,10 @@ class RoomsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\rooms  $rooms
+     * @param  \App\Models\BookedActivity  $bookedActivity
      * @return \Illuminate\Http\Response
      */
-    public function edit(rooms $rooms)
+    public function edit(BookedActivity $bookedActivity)
     {
         //
     }
@@ -70,10 +69,10 @@ class RoomsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\rooms  $rooms
+     * @param  \App\Models\BookedActivity  $bookedActivity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rooms $rooms)
+    public function update(Request $request, BookedActivity $bookedActivity)
     {
         //
     }
@@ -81,10 +80,10 @@ class RoomsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\rooms  $rooms
+     * @param  \App\Models\BookedActivity  $bookedActivity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rooms $rooms)
+    public function destroy(BookedActivity $bookedActivity)
     {
         //
     }

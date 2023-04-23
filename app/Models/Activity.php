@@ -32,5 +32,8 @@ class Activity extends Model
     {
         return $this->hasMany(ReviewActivity::class);
     }
-
+ public function activity()
+    {
+        $this->belongsTo(BookedActivity::class );
+    }
 }
