@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookedActivityController;
 use App\Http\Controllers\HotelInfoController;
 use App\Http\Controllers\ReviewHotelController;
@@ -37,12 +38,24 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout',[LoginController::class, 'logout']);
 
 });
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+});
+
 // Admin Routes
 Route::post('/register',[RegisterController::class, 'register']);
 Route::post('/login',[LoginController::class, 'login']);
 Route::post('/verification-notification', [EmailVerficationController::class, 'sendVerficationEmail'])->middleware('auth:sanctum');
 Route::get('verify-email/{id}/{hash}', [EmailVerficationController::class, 'verify'])->name('verification.verify');
-Route::post('/forgot-password', [NewPasswordController::class, 'forgotPassword']);
+Route::post('/forget-password', [NewPasswordController::class, 'forgotPassword']);
 Route::post('/reset-password', [NewPasswordController::class, 'reset']);
 // Hotels Routes
 route::get('/Allhotles',[HotelsController::class,'index']);
