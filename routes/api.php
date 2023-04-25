@@ -7,6 +7,7 @@ use App\Http\Controllers\HotelInfoController;
 use App\Http\Controllers\InterstedController;
 use App\Http\Controllers\ReviewHotelController;
 use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\UserInterstedController;
 use App\Models\BookedActivity;
 use App\Models\ReviewHotel;
 use Illuminate\Http\Request;
@@ -71,6 +72,11 @@ route::post('/Intersted/create',[InterstedController::class,'create']);
 route::put('/Intersted/update',[InterstedController::class,'update']);
 route::delete('/Intersted/delete',[InterstedController::class,'delete']);
 // category done
+//user intersted
+route::get('/InterstedUser',[UserInterstedController::class,'index']);
+route::get('/InterstedUser/{id}',[UserInterstedController::class,'getUserIntersted']);
+route::post('/InterstedUser/add',[UserInterstedController::class,'addUserInterstend']);
+
 /////////////////////////////////////////////////////////////////////////////
 route::get('/category',[CategoryController::class,'index']);
 route::post('/category/insert',[CategoryController::class,'create']);

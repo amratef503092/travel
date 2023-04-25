@@ -9,15 +9,15 @@ class User_Intersted extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'userId',
+        'userID',
         "interstedsId"
     ];
-    public function users()
+    public function user()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class , "userID");
     }
-    public function intersteds()
+    public function intersted()
     {
-        return $this->hasMany(Intersted::class);
+        return $this->belongsTo(Intersted::class , 'interstedsId');
     }
 }
