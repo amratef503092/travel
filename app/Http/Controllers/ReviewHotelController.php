@@ -10,10 +10,10 @@ class ReviewHotelController extends Controller
 {
     use apiRsponseFormate;
     //
-    public function index()
+    public function index($idHotel)
     {
         //
-        return ReviewHotelResource::collection(ReviewHotel::get());
+        return ReviewHotelResource::collection(ReviewHotel::where("Hotel_id" , $idHotel)->get());
     }
     public function create(Request $request)
     {

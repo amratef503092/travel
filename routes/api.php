@@ -5,10 +5,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookedActivityController;
 use App\Http\Controllers\HotelInfoController;
 use App\Http\Controllers\InterstedController;
+use App\Http\Controllers\ReviewActivityController;
 use App\Http\Controllers\ReviewHotelController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\UserInterstedController;
 use App\Models\BookedActivity;
+use App\Models\ReviewActivity;
 use App\Models\ReviewHotel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -91,6 +93,13 @@ route::post('/activiy/insert',[ActivityController::class,'create']);
 route::put('/activiy/update/{id}',[ActivityController::class,'update']);
 route::delete('/activiy/delete/{id}',[ActivityController::class,'delete']);
 /////////////////////////////////////////////////////////////////////////////
+// review activity
+route::get('review/activiy/{id}',[ReviewActivityController::class,'index']);
+route::post('review/activiy/insert',[ReviewActivityController::class,'create']);
+route::put('review/activiy/update/{id}',[ReviewActivityController::class,'update']);
+route::delete('review/activiy/delete/{id}',[ReviewActivityController::class,'delete']);
+
+
 // booked
 route::get('/activiy/booked',[BookedActivityController::class,'index']);
 route::get('/activiy/booked/{id}',[BookedActivityController::class,'getById']);

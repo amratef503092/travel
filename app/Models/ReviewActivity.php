@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ReviewActivity extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "activity_id",
+        "user_id",
+        "rate",
+        "comment"
+    ];
     public function activity()
     {
         return $this->belongsTo(Activity::class);
