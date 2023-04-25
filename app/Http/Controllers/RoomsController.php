@@ -28,9 +28,12 @@ class RoomsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $rooms = Room::create($request->all());
+        return $rooms;
+
     }
 
     /**
@@ -61,9 +64,13 @@ class RoomsController extends Controller
      * @param  \App\Models\rooms  $rooms
      * @return \Illuminate\Http\Response
      */
-    public function edit(rooms $rooms)
+    public function edit(Request $request,$id)
     {
         //
+        $rooms = Room::find($id);
+        $rooms = $rooms->update($request->all());
+        return $this->apiResponse($rooms , "succsessfly" ,200);
+
     }
 
     /**
@@ -84,8 +91,11 @@ class RoomsController extends Controller
      * @param  \App\Models\rooms  $rooms
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rooms $rooms)
+    public function destroy($id)
     {
         //
+        $rooms = Room::find($id);
+        $rooms->delete();
+        return $this->apiResponse(null , "delete successfuly" ,200);
     }
 }

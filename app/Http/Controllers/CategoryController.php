@@ -45,7 +45,7 @@ class CategoryController extends Controller
         $category = Category::find($request->id);
         $category->name = $request->name;
         $result=$category->save();
-        return $this->apiResponse($category , "successfully" , 200);
+        return $this->apiResponse($result , "successfully" , 200);
 
 
     }

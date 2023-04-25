@@ -97,21 +97,24 @@ route::get('/activiy/booked/{id}',[BookedActivityController::class,'getById']);
 route::post('/activiy/booked/bookActivity',[BookedActivityController::class,'bookedActivity']);
 route::put('/activiy/booked/updateActivity',[BookedActivityController::class,'update']); // هعمل انو ممكين يكنسل الرحله
 route::delete('/activiy/booked/deleteBookedActivity',[BookedActivityController::class,'delete']); // soft delete
-//
+/////////////////////////////////////////////////////////////////////////////
 route::get('/hotel',[HotelInfoController::class,'index']);
 route::get('/hotel/createHotel',[HotelInfoController::class,'create']);
 route::get('/hotel/updateHotel',[HotelInfoController::class,'update']);
 route::get('/hotel/removeHotel',[HotelInfoController::class,'delete']);
 
 // review Hotel
+
 route::get('/hotel/review/{idHotel}',[ReviewHotelController::class,'index']);
 route::post('/hotel/review/createReview',[ReviewHotelController::class,'create']);
-route::delete('/hotel/review/delete',[ReviewHotelController::class,'delete']);
+route::delete('/hotel/review/delete/{id}',[ReviewHotelController::class,'delete']);
 
 // rooms
+//////////////////// done ///////////////////////////////////
 route::get('/hotel/rooms',[RoomsController::class,'index']);
-route::post('/hotel/rooms/insert',[RoomsController::class,'insert']);
-route::put('/hotel/rooms/update',[RoomsController::class,'update']);
-route::delete('/hotel/rooms/delete',[RoomsController::class,'delete']);
+route::post('/hotel/rooms/insert',[RoomsController::class,'create']);
+route::get('/hotel/rooms/update/{id}',[RoomsController::class,'edit']);
+route::delete('/hotel/rooms/delete/{id}',[RoomsController::class,'destroy']);
+//////////////////// done ///////////////////////////////////
 
 

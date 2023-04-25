@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('user__intersteds', function (Blueprint $table)
         {
-            $table->foreignId("userID")->constrained(
-                "users"
-            );
-            $table->foreignId("interstedsId")->constrained(
-                "intersteds"
-            );
-            $table->timestamps();
+            $table->unsignedBigInteger('userID');
+            $table->unsignedBigInteger('interstedsId');
+            $table->primary(['userID', 'interstedsId']);
+            $table->foreign("userID")->references(
+                "id"
+            )->on("users");
+            $table->foreign("interstedsId")->references(
+                "id"
+            )->on("intersteds");
         });
     }
 

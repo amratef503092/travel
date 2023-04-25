@@ -20,8 +20,7 @@ return new class extends Migration
             $table->json("location");
             $table->json("OPTIONS");
             $table->String("type_of_room");
-            $table->foreignId("city_id")->constrained("cities");
-
+            $table->foreignId("city_id")->constrained("cities")->cascadeOnDelete();
             $table->timestamps();
         });
     }

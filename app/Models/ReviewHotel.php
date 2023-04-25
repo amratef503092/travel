@@ -8,12 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class ReviewHotel extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "Hotel_id",
+        "userID_id",
+        "rate",
+        "comments"
+    ];
     public function hotelInfo()
     {
-        return $this->belongsTo(HotelInfo::class,'id');
+        return $this->belongsTo(HotelInfo::class,'Hotel_id');
     }
     public function user()
     {
-        return $this->belongsTo(User::class , 'id');
+        return $this->belongsTo(User::class,"userID_id");
     }
 }
