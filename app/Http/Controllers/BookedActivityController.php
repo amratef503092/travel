@@ -21,15 +21,25 @@ class BookedActivityController extends Controller
         $bookedActivity = BookedActivityResource::collection(BookedActivity::get());
         return  $this->apiResponse($bookedActivity , "Successfully" , 200);
     }
+    public function getById($id)
+    {
+        //
+        $bookedActivity = BookedActivity::find($id);
+        $bookedActivity = new BookedActivityResource(BookedActivity::find($id));
+        return  $this->apiResponse($bookedActivity , "Successfully" , 200);
+    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function bookedActivity(Request $request)
     {
         //
+        $bookedActivity = BookedActivity::create($request->all());
+        $bookedActivity = new BookedActivityResource($bookedActivity);
+        return $this->apiResponse($bookedActivity ,"booked Successfuly" , 201);
     }
 
     /**
@@ -75,6 +85,7 @@ class BookedActivityController extends Controller
     public function update(Request $request, BookedActivity $bookedActivity)
     {
         //
+        
     }
 
     /**

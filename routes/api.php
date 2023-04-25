@@ -4,6 +4,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookedActivityController;
 use App\Http\Controllers\HotelInfoController;
+use App\Http\Controllers\InterstedController;
 use App\Http\Controllers\ReviewHotelController;
 use App\Http\Controllers\RoomsController;
 use App\Models\BookedActivity;
@@ -42,7 +43,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
-], function ($router) {
+], function ($router)
+{
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -61,26 +63,49 @@ Route::post('/reset-password', [NewPasswordController::class, 'reset']);
 route::get('/Allhotles',[HotelsController::class,'index']);
 route::post('/Registerhotels',[RegisterHotelsController::class,'register']);
 route::post('/LoginHotels',[LoginHotelController::class,'login']);
+//city
 route::get('/City',[CityController::class,'index']);
+// interstance
+route::get('/Intersted',[InterstedController::class,'index']);
+route::post('/Intersted/create',[InterstedController::class,'create']);
+route::put('/Intersted/update',[InterstedController::class,'update']);
+route::delete('/Intersted/delete',[InterstedController::class,'delete']);
+// category done
+/////////////////////////////////////////////////////////////////////////////
+route::get('/category',[CategoryController::class,'index']);
+route::post('/category/insert',[CategoryController::class,'create']);
+route::put('/category/update',[CategoryController::class,'update']);
+route::delete('/category/delete/{id}',[CategoryController::class,'delete']);
+/////////////////////////////////////////////////////////////////////////////
 
-route::get('/categoryID',[CategoryController::class,'index']);
-route::post('/categoryID/insert',[CategoryController::class,'create']);
-route::put('/categoryID/update',[CategoryController::class,'update']);
-route::delete('/categoryID/delete/{id}',[CategoryController::class,'delete']);
-
-// activities
+// activities done
+/////////////////////////////////////////////////////////////////////////////
 route::get('/activiy',[ActivityController::class,'index']);
 route::post('/activiy/insert',[ActivityController::class,'create']);
-route::put('/activiy/update',[ActivityController::class,'update']);
+route::put('/activiy/update/{id}',[ActivityController::class,'update']);
 route::delete('/activiy/delete/{id}',[ActivityController::class,'delete']);
-
+/////////////////////////////////////////////////////////////////////////////
 // booked
 route::get('/activiy/booked',[BookedActivityController::class,'index']);
-
-
+route::get('/activiy/booked/{id}',[BookedActivityController::class,'getById']);
+route::post('/activiy/booked/bookActivity',[BookedActivityController::class,'bookedActivity']);
+route::put('/activiy/booked/updateActivity',[BookedActivityController::class,'update']); // هعمل انو ممكين يكنسل الرحله
+route::delete('/activiy/booked/deleteBookedActivity',[BookedActivityController::class,'delete']); // soft delete
 //
 route::get('/hotel',[HotelInfoController::class,'index']);
+route::get('/hotel/createHotel',[HotelInfoController::class,'create']);
+route::get('/hotel/updateHotel',[HotelInfoController::class,'update']);
+route::get('/hotel/removeHotel',[HotelInfoController::class,'delete']);
 
 // review Hotel
-route::get('/hotel/review',[ReviewHotelController::class,'index']);
+route::get('/hotel/review/{idHotel}',[ReviewHotelController::class,'index']);
+route::post('/hotel/review/createReview',[ReviewHotelController::class,'create']);
+route::delete('/hotel/review/delete',[ReviewHotelController::class,'delete']);
+
+// rooms
 route::get('/hotel/rooms',[RoomsController::class,'index']);
+route::post('/hotel/rooms/insert',[RoomsController::class,'insert']);
+route::put('/hotel/rooms/update',[RoomsController::class,'update']);
+route::delete('/hotel/rooms/delete',[RoomsController::class,'delete']);
+
+

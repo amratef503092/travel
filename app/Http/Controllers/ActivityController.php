@@ -25,19 +25,35 @@ class ActivityController extends Controller
     public function create(Request $request)
     {
         $activity = new Activity();
-        $activity ::create([
-            "activityName"=>$request->activityName,
-            "activityPrice"=>$request->activityPrice,
-            "description"=>$request->description,
-            "openTime"=>$request->openTime,
-            "closeTime"=>$request->closeTime,
-            "locationLang"=>$request->locationLang,
-            "locationlatitude"=>$request->locationlatitude,
-            "category_id"=>$request->category_id,
-
-        ]);
-        return  [
-            "activity"=>$request,
-        ];
+        $activity  =  $activity ::create($request->all());
+        return $this->apiResponse($activity ,"Successfuly",200);
     }
+    public function update(Request $request , $id)
+    {
+
+        //
+        // search id in data base
+        // $category = Category::find($id);
+        // $category = Category::where('id',$id);
+        $activity = Activity::find($id);
+        $activity->update($request->all());
+        if($activity)
+        {
+            return $this->apiResponse($activity , "Update Succesfuly" , 200);
+        }else
+        {
+            return $this->apiResponse(null , "Update Error" , 400);
+
+        }
+    }
+    public function delete($id)
+    {
+
+        $activity = Activity::find($id);
+
+        $activity->delete($id);
+        return ["result"=>"record is deleted"];
+
+    }
+
 }

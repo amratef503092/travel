@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+    use apiRsponseFormate;
     public function index()
     {
         //
         // $category =  Category ::all();
         $category =  Category ::get();
 
-        return  $category;
+        return $this->apiResponse($category , "successfuly" , 200);
     }
     public function create(Request $request)
     {
@@ -28,12 +29,11 @@ class CategoryController extends Controller
         //     'id' =>$category->id,
         //     'name'=>$category->name,
         //   );
-          $category::create([
+         $category =  $category::create([
             'name' =>$request->name
           ]);
-        return json_encode([
-            'done'
-        ]);
+        return  $this->apiResponse($category , "successfuly" , 200);
+
     }
     public function update(Request $request)
     {
@@ -45,7 +45,7 @@ class CategoryController extends Controller
         $category = Category::find($request->id);
         $category->name = $request->name;
         $result=$category->save();
-        return $result;
+        return $this->apiResponse($category , "successfully" , 200);
 
 
     }
