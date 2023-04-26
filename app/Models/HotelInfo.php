@@ -15,7 +15,8 @@ class HotelInfo extends Model
     ];
     public function reviewHotel()
     {
-        return $this->hasMany(ReviewHotel::class);
+       $review =  $this->hasMany(ReviewHotel::class , "Hotel_id");
+        return  $review;
     }
     public function room()
     {

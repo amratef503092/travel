@@ -14,13 +14,14 @@ class ReviewHotelResource extends JsonResource
      */
     public function toArray($request)
     {
-        return
-        [
-         "rate"=>$this->rate,
+        $totalRate = $this->rate;
+        return [
+          "rate"=>  $this->rate,
          "comment"=>$this->comments,
          "userInfo"=>$this->user,
          "hotelInfo"=>$this->hotelInfo,
          "created_at"=>$this->created_at,
-        ];
+        ]
+    ;
     }
 }

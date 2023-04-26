@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\HotelInfoResource;
 use App\Models\HotelInfo;
+use App\Models\ReviewHotel;
 use Illuminate\Http\Request;
 
 class HotelInfoController extends Controller
@@ -12,11 +14,14 @@ class HotelInfoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    use apiRsponseFormate;
     public function index()
     {
         //
         $hotelInfo = HotelInfo::get();
-        return $hotelInfo;
+
+
+        return HotelInfoResource::collection($hotelInfo);
     }
 
     /**
