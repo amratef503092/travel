@@ -3,12 +3,14 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookedActivityController;
+use App\Http\Controllers\BookingRoomController;
 use App\Http\Controllers\HotelInfoController;
 use App\Http\Controllers\InterstedController;
 use App\Http\Controllers\ReviewActivityController;
 use App\Http\Controllers\ReviewHotelController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\UserInterstedController;
+use App\Mail\SendEmail;
 use App\Models\BookedActivity;
 use App\Models\ReviewActivity;
 use App\Models\ReviewHotel;
@@ -67,7 +69,7 @@ route::get('/Allhotles',[HotelsController::class,'index']);
 route::post('/Registerhotels',[RegisterHotelsController::class,'register']);
 route::post('/LoginHotels',[LoginHotelController::class,'login']);
 //city
-route::get('/City',[CityController::class,'index']);
+route::get('/City',[CityController::class,'index'])->middleware(['auth'  , 'verified']);
 // interstance
 route::get('/Intersted',[InterstedController::class,'index']);
 route::post('/Intersted/create',[InterstedController::class,'create']);
@@ -126,4 +128,19 @@ route::get('/hotel/rooms/update/{id}',[RoomsController::class,'edit']);
 route::delete('/hotel/rooms/delete/{id}',[RoomsController::class,'destroy']);
 //////////////////// done ///////////////////////////////////
 
+
+// send Email
+route::get('send/Email',
+function (){
+Mail::to("amr.atef503092@gmail.com")->send(new SendEmail());
+return "Email Send";
+});
+
+// booking Room
+route::get('/hotel/rooms/booked',[BookingRoomController::class,'index']);
+route::get('/hotel/rooms/getBookingRoomById/{id}',[BookingRoomController::class,'getBookingRoomById']);
+route::get('/hotel/rooms/getBookingRoomByUser/{id}',[BookingRoomController::class,'getBookingRoomByUserId']);
+route::post('/hotel/rooms/getBookingRoombyHotelID',[BookingRoomController::class,'getBookingRoombyHotelID']);
+route::post('/hotel/rooms/createBookingRoom',[BookingRoomController::class,'createBookingRoom']);
+route::post('/hotel/rooms/bookRoomID',[BookingRoomController::class,'getBookingRoombyRoomID']);
 
