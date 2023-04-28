@@ -4,16 +4,19 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookedActivityController;
 use App\Http\Controllers\BookingRoomController;
+use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\HotelInfoController;
 use App\Http\Controllers\InterstedController;
 use App\Http\Controllers\ReviewActivityController;
 use App\Http\Controllers\ReviewHotelController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\UserInterstedController;
+use App\Http\Controllers\VerifyEmailController;
 use App\Mail\SendEmail;
 use App\Models\BookedActivity;
 use App\Models\ReviewActivity;
 use App\Models\ReviewHotel;
+use Ichtrojan\Otp\Models\Otp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\LoginController;
@@ -55,7 +58,9 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
+
 });
+route::post('/email/otp',[VerifyEmailController::class,'sendVerifyEmail']);
 
 // Admin Routes
 Route::post('/register',[RegisterController::class, 'register']);
@@ -69,7 +74,7 @@ route::get('/Allhotles',[HotelsController::class,'index']);
 route::post('/Registerhotels',[RegisterHotelsController::class,'register']);
 route::post('/LoginHotels',[LoginHotelController::class,'login']);
 //city
-route::get('/City',[CityController::class,'index'])->middleware(['auth'  , 'verified']);
+route::get('/City',[CityController::class,'index']);
 // interstance
 route::get('/Intersted',[InterstedController::class,'index']);
 route::post('/Intersted/create',[InterstedController::class,'create']);
@@ -97,9 +102,11 @@ route::delete('/activiy/delete/{id}',[ActivityController::class,'delete']);
 /////////////////////////////////////////////////////////////////////////////
 // review activity
 route::get('review/activiy/{id}',[ReviewActivityController::class,'index']);
+route::get('review/activiy',[ReviewActivityController::class,'getAllReview']);
+
 route::post('review/activiy/insert',[ReviewActivityController::class,'create']);
 route::put('review/activiy/update/{id}',[ReviewActivityController::class,'update']);
-route::delete('review/activiy/delete/{id}',[ReviewActivityController::class,'delete']);
+route::delete('review/activiy/delete/{id}',[ReviewActivityController::class,'destroy']);
 
 
 // booked
@@ -132,6 +139,7 @@ route::delete('/hotel/rooms/delete/{id}',[RoomsController::class,'destroy']);
 // send Email
 route::get('send/Email',
 function (){
+
 Mail::to("amr.atef503092@gmail.com")->send(new SendEmail());
 return "Email Send";
 });
@@ -143,4 +151,12 @@ route::get('/hotel/rooms/getBookingRoomByUser/{id}',[BookingRoomController::clas
 route::post('/hotel/rooms/getBookingRoombyHotelID',[BookingRoomController::class,'getBookingRoombyHotelID']);
 route::post('/hotel/rooms/createBookingRoom',[BookingRoomController::class,'createBookingRoom']);
 route::post('/hotel/rooms/bookRoomID',[BookingRoomController::class,'getBookingRoombyRoomID']);
+
+// verify Email
+route::post('/email/verify',[VerifyEmailController::class,'verifyEmail']);
+
+// send  otp to email reset Password
+route::post('/password/sendotp',[ForgetPasswordController::class,'sendOtp']);
+route::post('/password/verifyotp',[ForgetPasswordController::class,'verifyOtp']);
+// route::post('/password/resetpassword',[ForgetPasswordController::class,'resetPassword']);
 

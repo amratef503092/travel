@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendEmail;
 use App\Models\User;
+use App\Models\VerifyEmail;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
+use App\Mail\VerificationEmail;
 use Validator;
-
+use App\Notifications\EmailVerificationNotification;
+use App\Models\VrifyEmail;
 class AuthController extends Controller
 {
     //
     public function __construct() {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
-
+    public function generateOtp()
+    {
+        $otp = rand(100000, 999999);
+        return $otp;
+    }
     public function login(Request $request){
     	$validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -29,7 +38,8 @@ class AuthController extends Controller
         }
         return $this->createNewToken($token);
     }
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
@@ -38,21 +48,39 @@ class AuthController extends Controller
             'nationality'=>'required',
             'location'=>'required',
             'profile_image'=>'required',
-
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-        $user = User::create(array_merge(
+        $user = User::create(
+            array_merge(
                     $validator->validated(),
                     ['password' => bcrypt($request->password)]
                 ));
-        return response()->json([
+                $date = date('Y-m-d H:i:s');
+                $otp = $this->generateOtp();
+                $data = 'Mail Verification';
+                // send otp
+                Mail::send('mail', ['data' => $data, 'otp' => $otp],
+                function (Message $message) use ($request) {
+                    $message->to($request->email);
+                    $message->subject('Mail Verification');
+                });
+                VerifyEmail::create([
+                    'email'=>$request->email,
+                    'otp' => $otp,
+                    'created_at' => $date,
+                    'updated_at' => $date,
+                ]);
+                // send otp end
+            return response()->json([
             'message' => 'User successfully registered',
+            "meg"=>'please Cheack ur Email',
             'user' => $user
         ], 201);
     }
-    public function logout() {
+    public function logout()
+    {
         auth()->logout();
         return response()->json(['message' => 'User successfully signed out']);
     }
@@ -86,12 +114,6 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user(),
         ]);
-    }
-    public function sendResetLinkEmail()
-    {
-
-
-        return  "Amr";
     }
 
 

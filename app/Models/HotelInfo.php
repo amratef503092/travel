@@ -22,4 +22,8 @@ class HotelInfo extends Model
     {
         return $this->hasMany(Room::class);
     }
+    public function hotelManager()
+    {
+        return $this->belongsTo(hotels::class);
+    }
 }

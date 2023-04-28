@@ -17,7 +17,7 @@ class HotelInfoResource extends JsonResource
         return
         [
             "id"=>$this->id,
-            "review"=> ReviewHotelResource::collection($this->reviewHotel),
+            "review"=> $this->reviewHotel->avg("rate"),
             "hotel_name"=>$this->hotel_name,
             "images"=>$this->images,
             "location"=>$this->location,

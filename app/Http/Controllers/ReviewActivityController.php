@@ -85,8 +85,10 @@ class ReviewActivityController extends Controller
      * @param  \App\Models\ReviewActivity  $reviewActivity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReviewActivity $reviewActivity)
+    public function destroy($id)
     {
         //
+        $reviewActivity = ReviewActivity::find($id)->delete();
+        return $this->apiResponse($reviewActivity , "delete successfuly" , 200);
     }
 }

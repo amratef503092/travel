@@ -80,12 +80,14 @@ class BookedActivityController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\BookedActivity  $bookedActivity
+     *
+     * 
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, BookedActivity $bookedActivity)
     {
         //
-        
+
     }
 
     /**

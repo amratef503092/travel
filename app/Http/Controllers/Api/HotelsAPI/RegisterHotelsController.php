@@ -11,11 +11,10 @@ use Illuminate\Http\Request;
 class RegisterHotelsController extends Controller
 {
     use ApiResponser;
-    public function register(RegisterHotelRequest $request)
+    public function register(Request $request)
     {
 
-        $data = hotels::create($request->validated());
-
+        $data = hotels::create($request->all());
 
         return $this->success([
             'data' => $data,

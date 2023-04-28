@@ -29,6 +29,7 @@ class User extends Authenticatable implements JWTSubject , MustVerifyEmail
         'password',
         'gender',
         'status',
+        'email_verified_at',
         'nationality',
     ];
 
@@ -47,9 +48,7 @@ class User extends Authenticatable implements JWTSubject , MustVerifyEmail
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+
 
     // public function setPasswordAttribute($password)
     // {

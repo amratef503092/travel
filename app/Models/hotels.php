@@ -18,8 +18,6 @@ protected $fillable =[
 'id',
 'Hotel_name',
 'city_id',
-'Total_price',
-'rating',
 'type',
 'facilities',
 'owner_name',
@@ -47,5 +45,9 @@ public function setPasswordAttribute($password)
     }
     public function rooms(){
         return $this->belgonsTo(rooms::class);
+    }
+    public function hotelInfo()
+    {
+        return $this->hasMany(HotelInfo::class);
     }
 }

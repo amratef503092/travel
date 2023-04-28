@@ -34,8 +34,6 @@ class RegisterHotelRequest extends FormRequest
         return [
             'Hotel_name' => ['required', 'string', ],
             'city_id' => ['required', 'integer'],
-            'Total_price' => ['required', 'integer', ],
-            'rating' => ['required', 'integer'],
             'type' => ['required', 'string', ],
             'facilities' => ['required', 'string'],
             'owner_name' => ['required', 'string', ],
@@ -43,7 +41,6 @@ class RegisterHotelRequest extends FormRequest
             'password' => ['required', 'string', ],
             'phone_number' => ['required', 'string'],
             'number_of_rooms' => ['required', 'integer', ],
-
         ];
     }
 }
