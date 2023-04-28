@@ -77,7 +77,7 @@ route::post('/LoginHotels',[LoginHotelController::class,'login']);
 route::get('/City',[CityController::class,'index']);
 // interstance
 route::get('/Intersted',[InterstedController::class,'index']);
-route::post('/Intersted/create',[InterstedController::class,'create']);
+route::post('/Interstecreated/',[InterstedController::class,'create']);
 route::put('/Intersted/update',[InterstedController::class,'update']);
 route::delete('/Intersted/delete',[InterstedController::class,'delete']);
 // category done
@@ -117,9 +117,9 @@ route::put('/activiy/booked/updateActivity',[BookedActivityController::class,'up
 route::delete('/activiy/booked/deleteBookedActivity',[BookedActivityController::class,'delete']); // soft delete
 /////////////////////////////////////////////////////////////////////////////
 route::get('/hotel',[HotelInfoController::class,'index']);
-route::get('/hotel/createHotel',[HotelInfoController::class,'create']);
-route::get('/hotel/updateHotel',[HotelInfoController::class,'update']);
-route::get('/hotel/removeHotel',[HotelInfoController::class,'delete']);
+route::post('/hotel/createHotel',[HotelInfoController::class,'create']);
+route::put('/hotel/updateHotel',[HotelInfoController::class,'update']);
+route::delete('/hotel/removeHotel/{id}',[HotelInfoController::class,'destroy']);
 
 // review Hotel
 

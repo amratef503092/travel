@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class HotelInfo extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'hotel_id',
+        'hotel_name',
+        'images',
+        'location',
+        'OPTIONS',
+        'city_id',
+        'type_of_room',
+
+    ];
     protected $casts = [
         'images' => 'array',
         'location' => 'array',

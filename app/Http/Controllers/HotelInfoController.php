@@ -19,8 +19,6 @@ class HotelInfoController extends Controller
     {
         //
         $hotelInfo = HotelInfo::get();
-
-
         return HotelInfoResource::collection($hotelInfo);
     }
 
@@ -29,8 +27,21 @@ class HotelInfoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(
+        Request $request,
+    )
     {
+        $hotelInfo = HotelInfo::create($request->all());
+        return $this->apiResponse($hotelInfo ,"successfuly" , 200);
+        //
+    }
+    public function update(
+        Request $request,
+    )
+    {
+        $hotel = HotelInfo::find($request->id);
+        $hotel = $hotel->update($request->all());
+        return $this->apiResponse($hotel ,"successfuly" , 200);
         //
     }
 
@@ -74,10 +85,7 @@ class HotelInfoController extends Controller
      * @param  \App\Models\HotelInfo  $hotelInfo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HotelInfo $hotelInfo)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -85,8 +93,11 @@ class HotelInfoController extends Controller
      * @param  \App\Models\HotelInfo  $hotelInfo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HotelInfo $hotelInfo)
+    public function destroy($id)
     {
         //
+        $hotelInfo = HotelInfo::find($id);
+        $hotelInfo->delete();
+        return $this->apiResponse($hotelInfo ,"successfuly" , 200);
     }
 }
