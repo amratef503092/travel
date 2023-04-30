@@ -77,7 +77,7 @@ route::post('/LoginHotels',[LoginHotelController::class,'login']);
 route::get('/City',[CityController::class,'index']);
 // interstance
 route::get('/Intersted',[InterstedController::class,'index']);
-route::post('/Interstecreated/',[InterstedController::class,'create']);
+route::post('/Interstecreated',[InterstedController::class,'create']);
 route::put('/Intersted/update',[InterstedController::class,'update']);
 route::delete('/Intersted/delete',[InterstedController::class,'delete']);
 // category done
