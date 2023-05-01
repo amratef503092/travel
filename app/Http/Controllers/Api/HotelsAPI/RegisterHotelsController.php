@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Api\HotelsApi;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\RegisterHotelRequest;
 use App\Http\Traits\ApiResponser;
