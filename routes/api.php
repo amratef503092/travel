@@ -8,6 +8,7 @@ use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\HotelInfoController;
 use App\Http\Controllers\InterstedController;
 use App\Http\Controllers\LoginHotelController;
+use App\Http\Controllers\RegisterHotelController;
 use App\Http\Controllers\ReviewActivityController;
 use App\Http\Controllers\ReviewHotelController;
 use App\Http\Controllers\RoomsController;
@@ -64,7 +65,7 @@ Route::post('/forget-password', [NewPasswordController::class, 'forgotPassword']
 Route::post('/reset-password', [NewPasswordController::class, 'reset']);
 // Hotels Routes
 route::get('/Allhotles',[HotelsController::class,'index']);
-route::post('/Registerhotels',[RegisterHotelsController::class,'register']);
+route::post('/Registerhotels',[RegisterHotelController::class,'register']);
 route::post('/LoginHotels',[LoginHotelController::class,'login']);
 //city
 route::get('/City',[CityController::class,'index']);
