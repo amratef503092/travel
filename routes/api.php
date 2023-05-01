@@ -49,7 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::group([
-    'middleware' => 'auth:api',
+    'middleware' => 'api',
     'prefix' => 'auth'
 ], function ($router)
 {
