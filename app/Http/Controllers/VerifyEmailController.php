@@ -45,7 +45,7 @@ class VerifyEmailController extends Controller
         if($verifyEmail->otp == $request->otp)
         {
             $verifyEmail->delete();
-            if($request->type == 'hotel')
+            if($request->type != 'hotel')
             {
                 $user = User::where('email',$email)->first();
                 $user->email_verified_at = 1;
