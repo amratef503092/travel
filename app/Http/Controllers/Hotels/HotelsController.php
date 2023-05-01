@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Hotels;
 
+use app\Http\Controllers\apiRsponseFormate;
 use App\Http\Traits\ApiResponser;
 use App\Models\hotels;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class HotelsController extends Controller
 {
-    use ApiResponser;
+    use apiRsponseFormate;
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +27,7 @@ class HotelsController extends Controller
     {
         // return hotels::all();
         $hotels= hotels::with('city')->get();
-        return  $this->success($hotels,$message='Hotels');
+        return  $this->apiResponse($hotels,'Hotels',200);
 
     }
 
@@ -54,7 +55,7 @@ class HotelsController extends Controller
 
 
         $insert = DB::table('hotels')->insert($data);
-        return  $this->success($data,$message='Hotels');
+        return  $this->apiResponse($insert,'Hotels',200);
 
     }
 

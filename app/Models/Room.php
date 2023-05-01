@@ -21,6 +21,6 @@ protected $fillable =
 ];
     use HasFactory;
     public function hotles(){
-     return   $this->belongsTo(HotelInfo::class,"id");
+     return   $this->belongsTo(HotelInfo::class,"Hotel_id");
     }
 }
