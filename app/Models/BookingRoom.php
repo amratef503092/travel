@@ -10,7 +10,7 @@ class BookingRoom extends Model
     use HasFactory;
     protected $fillable  =
     [
-        'hotel_id',
+        'hotel_info_id',
         'room_id',
         'user_id',
         'num_of_nights',
@@ -20,7 +20,8 @@ class BookingRoom extends Model
         'check_out',
         'status',
         'payment_status',
-        'payment_method'
+        'payment_method',
+
     ];
     public function hotel()
     {
