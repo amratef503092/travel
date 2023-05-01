@@ -49,7 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => 'auth:api',
     'prefix' => 'auth'
 ], function ($router)
 {
@@ -63,10 +63,10 @@ Route::group([
 route::post('/email/otp',[VerifyEmailController::class,'sendVerifyEmail']);
 
 // Admin Routes
-Route::post('/register',[RegisterController::class, 'register']);
-Route::post('/login',[LoginController::class, 'login']);
-Route::post('/verification-notification', [EmailVerficationController::class, 'sendVerficationEmail'])->middleware('auth:sanctum');
-Route::get('verify-email/{id}/{hash}', [EmailVerficationController::class, 'verify'])->name('verification.verify');
+// Route::post('/register',[RegisterController::class, 'register']);
+// Route::post('/login',[LoginController::class, 'login']);
+// Route::post('/verification-notification', [EmailVerficationController::class, 'sendVerficationEmail'])->middleware('auth:sanctum');
+// Route::get('verify-email/{id}/{hash}', [EmailVerficationController::class, 'verify'])->name('verification.verify');
 Route::post('/forget-password', [NewPasswordController::class, 'forgotPassword']);
 Route::post('/reset-password', [NewPasswordController::class, 'reset']);
 // Hotels Routes
