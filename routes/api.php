@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\Api\HotelsApi\LoginHotelController;
+use App\Http\Controllers\Api\HotelsApi\RegisterHotelsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookedActivityController;
 use App\Http\Controllers\BookingRoomController;
@@ -13,21 +15,13 @@ use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\UserInterstedController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Mail\SendEmail;
-use App\Models\BookedActivity;
-use App\Models\ReviewActivity;
-use App\Models\ReviewHotel;
-use Ichtrojan\Otp\Models\Otp;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\NewPasswordController;
 
-use App\Http\Controllers\Api\Auth\RegisterController;
-use App\Http\Controllers\api\HotelsApi\LoginHotelController;
 use App\Http\Controllers\CityController;
 
-use App\Http\Controllers\Api\HotelsApi\RegisterHotelsController;
-use App\Http\Controllers\Api\EmailVerficationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Hotels\HotelsController;
 use App\Models\Category;
