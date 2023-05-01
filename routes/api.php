@@ -1,14 +1,13 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\Api\HotelsApi\LoginHotelController;
-use App\Http\Controllers\Api\HotelsApi\RegisterHotelsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookedActivityController;
 use App\Http\Controllers\BookingRoomController;
 use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\HotelInfoController;
 use App\Http\Controllers\InterstedController;
+use App\Http\Controllers\LoginHotelController;
 use App\Http\Controllers\ReviewActivityController;
 use App\Http\Controllers\ReviewHotelController;
 use App\Http\Controllers\RoomsController;

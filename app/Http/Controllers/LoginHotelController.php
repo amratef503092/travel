@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Api\HotelsApi;
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
+
 use App\Http\Requests\Api\LoginHotelRequest;
 use App\Http\Traits\ApiResponser;
 use App\Models\hotels;
@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginHotelController extends Controller
 {
+    //
     use ApiResponser;
     public function login(LoginHotelRequest $request)
     {
@@ -37,5 +38,3 @@ class LoginHotelController extends Controller
         ];
     }
 }
-
-

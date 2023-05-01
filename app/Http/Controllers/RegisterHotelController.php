@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api\HotelsApi;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\RegisterHotelRequest;
-use App\Http\Traits\ApiResponser;
+namespace App\Http\Controllers;
+
 use App\Models\hotels;
 use Illuminate\Http\Request;
 
-class RegisterHotelsController extends Controller
+class RegisterHotelController extends Controller
 {
-    use ApiResponser;
+    //
     public function register(Request $request)
     {
 
