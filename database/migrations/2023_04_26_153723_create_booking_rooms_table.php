@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('booking_rooms', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('hotel_id')->constrained('hotel_infos');
+            $table->foreignId('hotel_info_id')->references('id')->on('hotel_infos');
             $table->foreignId('room_id')->constrained('rooms');
             $table->foreignId('user_id')->constrained('users');
             $table->integer('num_of_nights');
