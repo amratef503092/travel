@@ -36,17 +36,9 @@ class BookingRoomController extends Controller
     }
     public Function createBookingRoom(Request $request)
     {
-        $request->validate([
-            'hotel_id' => 'required',
-            'room_id' => 'required',
-            'num_of_nights' => 'required',
-            'num_of_guests' => 'required',
-            'total_price' => 'required',
-            'check_in' => 'required',
-            'check_out' => 'required',
-        ]);
+
         $bookingRoom = BookingRoom::create([
-            'hotel_info_id' => $request->hotel_id,
+            'hotel_info_id' => $request->hotel_info_id,
             'room_id' => $request->room_id,
             'user_id' => $request->user_id,
             'num_of_nights' => $request->num_of_nights,
