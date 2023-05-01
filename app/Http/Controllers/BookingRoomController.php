@@ -46,7 +46,7 @@ class BookingRoomController extends Controller
             'check_out' => 'required',
         ]);
         $bookingRoom = BookingRoom::create([
-            'hotel_id' => $request->hotel_id,
+            'hotel_info_id' => $request->hotel_id,
             'room_id' => $request->room_id,
             'user_id' => $request->user_id,
             'num_of_nights' => $request->num_of_nights,
