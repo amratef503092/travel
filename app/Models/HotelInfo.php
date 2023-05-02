@@ -30,10 +30,10 @@ class HotelInfo extends Model
     }
     public function room()
     {
-        return $this->hasMany(Room::class);
+        return $this->hasMany(Room::class , "hotel_id");
     }
     public function hotelManager()
     {
-        return $this->belongsTo(hotels::class);
+        return $this->belongsTo(hotels::class , "hotel_id");
     }
 }

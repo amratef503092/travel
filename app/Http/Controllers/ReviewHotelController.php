@@ -24,6 +24,12 @@ class ReviewHotelController extends Controller
         return $this->apiResponse(new ReviewHotelResource($createReview), "create review in hotel successfuly",
         200);
     }
+    public function allReview()
+    {
+        
+        //
+        return ReviewHotelResource::collection(ReviewHotel::all());
+    }
     public function delete( $id)
     {
         //
