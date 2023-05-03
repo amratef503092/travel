@@ -16,6 +16,7 @@ use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\UserInterstedController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Mail\SendEmail;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\LoginController;

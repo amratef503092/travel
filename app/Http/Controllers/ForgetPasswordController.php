@@ -6,7 +6,10 @@ use App\Models\ForgetPassword;
 use App\Models\hotels;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+
 
 class ForgetPasswordController extends Controller
 {
@@ -25,6 +28,12 @@ class ForgetPasswordController extends Controller
             return response()->json(['message' => 'Email is not registered'], 400);
         }
         $otp = $this->generateOtp();
+        $data = 'Mail Verification';
+        Mail::send('mail', ['data' => $data, 'otp' => $otp],
+        function (Message $message) use ($requset) {
+            $message->to($requset->email);
+            $message->subject('Mail Verification');
+        });
         $sendOtp =
         ForgetPassword::create([
             'email' => $requset->email,
