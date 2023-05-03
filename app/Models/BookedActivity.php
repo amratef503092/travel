@@ -12,17 +12,17 @@ class BookedActivity extends Model
     [
         "activity_id",
         "user_id",
-        "number_of_persons",
+        "number_of_people",
         "date",
 
     ];
     public function user()
     {
-      return  $this->belongsTo(User::class , "id");
+      return  $this->belongsTo(User::class , "user_id");
     }
     public function activity()
     {
-        return   $this->belongsTo(Activity::class,'id');
+        return   $this->belongsTo(Activity::class,'activity_id');
     }
 
 }

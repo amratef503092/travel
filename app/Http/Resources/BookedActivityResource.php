@@ -20,7 +20,7 @@ class BookedActivityResource extends JsonResource
             "activity"=>$this->activity,
             "user"=>$this->user,
             "date"=>$this->date,
-            "total_price"=>$this->total_price,
+            "number_of_people"=>$this->number_of_people,
             "created_at"=>$this->created_at
         ];
     }
