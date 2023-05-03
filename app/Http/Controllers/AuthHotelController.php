@@ -17,7 +17,6 @@ class AuthHotelController extends Controller
         $data = hotels::create([
             'Hotel_name' => $request->Hotel_name    ,
             'email' => $request->email,
-            'city_id'=>$request->city_id,
             'facilities'=>$request->facilities,
             'owner_name'=>$request->owner_name,
             'image'=>$request->image,

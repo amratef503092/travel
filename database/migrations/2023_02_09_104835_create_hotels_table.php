@@ -17,7 +17,6 @@ return new class extends Migration
         {
             $table->id();
             $table->string('Hotel_name');
-            $table->foreignId('city_id')->references('id')->on('cities');
             $table->string('facilities');
             $table->string('owner_name');
             $table->string('email')->unique();

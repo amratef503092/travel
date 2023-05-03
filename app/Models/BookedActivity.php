@@ -12,8 +12,9 @@ class BookedActivity extends Model
     [
         "activity_id",
         "user_id",
+        "number_of_persons",
         "date",
-        "total_price",
+
     ];
     public function user()
     {

@@ -9,24 +9,26 @@ class Activity extends Model
 {
     use HasFactory;
     protected $fillable = [
+
     'activityName' ,
     'activityPrice',
     'description',
     'openTime',
     'closeTime',
-    'locationLang',
-    'locationlatitude',
+    'location',
+    'images',
     'category_id',
     'city_id',
+    'hotel_id',
 ];
 
     public function category()
     {
-        return $this->hasOne(Category::class ,"id");
+        return $this->belongsTo(Category::class ,"category_id");
     }
     public function city()
     {
-        return $this->hasOne(city::class , "id");
+        return $this->belongsTo(city::class , "city_id");
     }
     public function review()
     {
@@ -34,6 +36,10 @@ class Activity extends Model
     }
  public function activity()
     {
-        $this->belongsTo(BookedActivity::class );
+        return   $this->belongsTo(BookedActivity::class);
+    }
+    public function hotel()
+    {
+        return  $this->belongsTo(hotels::class,"hotel_id" );
     }
 }

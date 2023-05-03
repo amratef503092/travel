@@ -16,16 +16,18 @@ class ActivityResource extends JsonResource
     {
         return
         [
+            "id" =>$this->id,
             "activityName" =>$this->activityName,
             "activityPrice" =>$this->activityPrice,
             "description" =>$this->description,
             "openTime" =>$this->openTime,
             "closeTime" =>$this->closeTime,
-            "locationLang" =>$this->locationLang,
-            "locationlatitude" =>$this->locationlatitude,
-            "review"=>ReviewResource::collection($this->review),
             "category"=>$this->category,
             "city"=>$this->city,
+            'hotel_id'=>$this->hotel,
+            "review"=>ReviewResource::collection($this->review),
+
+
 
         ];
     }

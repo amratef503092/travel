@@ -19,8 +19,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId("activity_id")->constrained("activities");
             $table->foreignId("user_id")->constrained("users");
+            $table->integer("number_of_people");
             $table->timestamp("date");
-            $table->double("total_price");
             $table->timestamps();
         });
     }

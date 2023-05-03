@@ -10,7 +10,7 @@ class User_Intersted extends Model
     use HasFactory;
     protected $fillable = [
         'userID',
-        "interstedsId"
+        "categoryId"
     ];
     public function user()
     {
@@ -18,6 +18,6 @@ class User_Intersted extends Model
     }
     public function intersted()
     {
-        return $this->belongsTo(Intersted::class , 'interstedsId');
+        return $this->belongsTo(Category::class , 'categoryId');
     }
 }

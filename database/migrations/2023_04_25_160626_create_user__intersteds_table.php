@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('user__intersteds', function (Blueprint $table)
         {
             $table->unsignedBigInteger('userID');
-            $table->unsignedBigInteger('interstedsId');
-            $table->primary(['userID', 'interstedsId']);
+            $table->unsignedBigInteger('categoryId');
+            $table->primary(['userID', 'categoryId']);
             $table->foreign("userID")->references(
                 "id"
             )->on("users");
-            $table->foreign("interstedsId")->references(
+            $table->foreign("categoryId")->references(
                 "id"
-            )->on("intersteds");
+            )->on("categories");
         });
     }
 

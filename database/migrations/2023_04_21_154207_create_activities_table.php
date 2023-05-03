@@ -20,8 +20,9 @@ return new class extends Migration
             $table->text("description");
             $table->text("openTime");
             $table->text("closeTime");
-            $table->text("locationLang");
-            $table->text("locationlatitude");
+            $table->json("location");
+            $table->json("images");
+            $table->foreignId('hotel_id')->references('id')->on('hotels');
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('city_id')->constrained('cities');
 
