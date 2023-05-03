@@ -8,8 +8,7 @@ use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\HotelInfoController;
 use App\Http\Controllers\HotelReviewForAi;
 use App\Http\Controllers\InterstedController;
-use App\Http\Controllers\LoginHotelController;
-use App\Http\Controllers\RegisterHotelController;
+
 use App\Http\Controllers\ReviewActivityController;
 use App\Http\Controllers\ReviewHotelController;
 use App\Http\Controllers\RoomsController;
@@ -21,7 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\NewPasswordController;
-
+use App\Http\Controllers\AuthHotelController;
 use App\Http\Controllers\CityController;
 
 use App\Http\Controllers\CategoryController;
@@ -55,6 +54,20 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 
+
+
+});
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth/hotel'
+], function ($Router)
+{
+    Route::post('/logout', [AuthHotelController::class, 'logout']);
+    Route::post('/refresh', [AuthHotelController::class, 'refresh']);
+    Route::get('/user-profile', [AuthHotelController::class, 'userProfile']);
+    Route::post('/register',[AuthHotelController::class,'register']);
+    Route::post('/login',[AuthHotelController::class,'login']);
+
 });
 Route::post('/email/otp',[VerifyEmailController::class,'sendVerifyEmail']);
 
@@ -67,8 +80,7 @@ Route::post('/forget-password', [NewPasswordController::class, 'forgotPassword']
 Route::post('/reset-password', [NewPasswordController::class, 'reset']);
 // Hotels Routes
 Route::get('/Allhotles',[HotelsController::class,'index']);
-Route::post('/Registerhotels',[RegisterHotelController::class,'register']);
-Route::post('/LoginHotels',[LoginHotelController::class,'login']);
+
 //city
 Route::get('/City',[CityController::class,'index']);
 // interstance

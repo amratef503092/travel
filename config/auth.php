@@ -45,6 +45,10 @@ return [
             'provider' => 'users',
             // 'hash' => false,
         ],
+        'hotel-api' => [
+            'driver' => 'jwt',
+            'provider' => 'hotels',
+        ],
     ],
 
     /*
@@ -68,6 +72,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'hotels' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\hotels::class,
         ],
 
         // 'users' => [

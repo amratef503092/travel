@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use App\Models\city;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class hotels extends Model
+
+class hotels extends Authenticatable  implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 protected $table = 'hotels';
@@ -32,10 +35,7 @@ protected $fillable =[
 protected $hidden = [
     'password',
 ];
-public function setPasswordAttribute($password)
-{
-    return $this->attributes['password'] = Hash::make($password);
-}
+
     public function city(){
         return $this->hasOne(city::class,'id','city_id');
     }
@@ -49,5 +49,14 @@ public function setPasswordAttribute($password)
     public function hotelInfo()
     {
         return $this->hasMany(HotelInfo::class);
+    }
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
