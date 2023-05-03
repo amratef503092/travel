@@ -19,7 +19,7 @@ class HotelInfoController extends Controller
     {
         //
         $hotelInfo = HotelInfo::get();
-        return HotelInfoResource::collection($hotelInfo);
+        return $this->apiResponse(HotelInfoResource::collection($hotelInfo) ,"successfuly" , 200);
     }
 
     /**

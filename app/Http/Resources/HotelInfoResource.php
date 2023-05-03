@@ -17,13 +17,16 @@ class HotelInfoResource extends JsonResource
         return
         [
             "id"=>$this->id,
-            "review"=> $this->reviewHotel->avg("rate"),
+            "hotelManager"=>$this->hotelManager,
+
+            "review"=> $this->reviewHotel->avg("rate")??0,
             "hotel_name"=>$this->hotel_name,
             "images"=>$this->images,
             "location"=>$this->location,
             "OPTIONS"=>$this->OPTIONS,
             "type_of_room"=>$this->type_of_room,
             "city_id"=>$this->city_id,
+
 
 
 

@@ -84,21 +84,24 @@ Route::get('/Allhotles',[HotelsController::class,'index']);
 //city
 Route::get('/City',[CityController::class,'index']);
 // interstance
-Route::get('/Intersted',[InterstedController::class,'index']);
-Route::post('/Interstecreated',[InterstedController::class,'create']);
-Route::put('/Intersted/update',[InterstedController::class,'update']);
-Route::delete('/Intersted/delete',[InterstedController::class,'delete']);
+// Route::get('/Intersted',[InterstedController::class,'index']);
+// Route::post('/Interstecreated',[InterstedController::class,'create']);
+// Route::put('/Intersted/update',[InterstedController::class,'update']);
+// Route::delete('/Intersted/delete',[InterstedController::class,'delete']);
 // category done
 //user intersted
-Route::get('/InterstedUser',[UserInterstedController::class,'index']);
-Route::get('/InterstedUser/{id}',[UserInterstedController::class,'getUserIntersted']);
-Route::post('/InterstedUser/add',[UserInterstedController::class,'addUserInterstend']);
+// Route::get('/InterstedUser',[UserInterstedController::class,'index']);
+// Route::get('/InterstedUser/{id}',[UserInterstedController::class,'getUserIntersted']);
+// Route::post('/InterstedUser/add',[UserInterstedController::class,'addUserInterstend']);
 
 /////////////////////////////////////////////////////////////////////////////
 Route::get('/category',[CategoryController::class,'index']);
+Route::post('/category/adduser',[CategoryController::class,'addUserCategory']);
+
 Route::post('/category/insert',[CategoryController::class,'create']);
 Route::put('/category/update',[CategoryController::class,'update']);
 Route::delete('/category/delete/{id}',[CategoryController::class,'delete']);
+
 /////////////////////////////////////////////////////////////////////////////
 
 // activities done
@@ -110,7 +113,7 @@ Route::delete('/activiy/delete/{id}',[ActivityController::class,'delete']);
 /////////////////////////////////////////////////////////////////////////////
 // review activity
 Route::get('review/activiy/{id}',[ReviewActivityController::class,'index']);
-Route::get('review/activiy',[ReviewActivityController::class,'getAllReview']);
+Route::get('review/activiy/review',[ReviewActivityController::class,'getAllReview']);
 
 Route::post('review/activiy/insert',[ReviewActivityController::class,'create']);
 Route::put('review/activiy/update/{id}',[ReviewActivityController::class,'update']);

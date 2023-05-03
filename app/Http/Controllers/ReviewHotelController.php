@@ -13,7 +13,10 @@ class ReviewHotelController extends Controller
     public function index($idHotel)
     {
         //
-        return ReviewHotelResource::collection(ReviewHotel::where("Hotel_id" , $idHotel)->get());
+        return$this->apiResponse(
+            ReviewHotelResource::collection(
+            ReviewHotel::where("hotel_id",$idHotel)->get())
+            ,"successfuly",200);
     }
     public function create(Request $request)
     {
@@ -26,7 +29,7 @@ class ReviewHotelController extends Controller
     }
     public function allReview()
     {
-        
+
         //
         return ReviewHotelResource::collection(ReviewHotel::all());
     }
