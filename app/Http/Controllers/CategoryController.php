@@ -63,21 +63,21 @@ class CategoryController extends Controller
     }
     public function addUserCategory(Request $request)
     {
-        $request->validate([
-            'categoryID' => 'required',
-            'user_id' => 'required',
-        ]);
+        // $request->validate([
+        //     'categoryID' => 'required',
+        //     'user_id' => 'required',
+        // ]);
         $categoryID = $request->category;
         $user_id = $request->user_id;
-        foreach ($categoryID as $category) {
+        // foreach ($categoryID as $category) {
 
-            DB::table('user__intersteds')->insert([
-                'user_id' => $user_id,
-                'category_id' => $category,
-            ]);
-        }
+        //     DB::table('user__intersteds')->insert([
+        //         'user_id' => $user_id,
+        //         'category_id' => $category,
+        //     ]);
+        // }
 
-        return $this->apiResponse($category , "successfuly" , 200);
+        return $categoryID;
 
     }
 }

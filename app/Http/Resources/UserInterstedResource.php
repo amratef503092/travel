@@ -18,7 +18,7 @@ class UserInterstedResource extends JsonResource
                 "user_id"=> $this->user->id,
                 "user_name"=> $this->user->name,
                 "intersted_id"=> $this->intersted->id,
-                "intersted_name"=> $this->intersted->intersted_name,
+                "category"=> $this->intersted->name,
         ];
     }
 }

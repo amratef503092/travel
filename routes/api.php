@@ -90,13 +90,13 @@ Route::get('/City',[CityController::class,'index']);
 // Route::delete('/Intersted/delete',[InterstedController::class,'delete']);
 // category done
 //user intersted
-// Route::get('/InterstedUser',[UserInterstedController::class,'index']);
-// Route::get('/InterstedUser/{id}',[UserInterstedController::class,'getUserIntersted']);
-// Route::post('/InterstedUser/add',[UserInterstedController::class,'addUserInterstend']);
+Route::get('/InterstedUser',[UserInterstedController::class,'index']);
+Route::get('/InterstedUser/{id}',[UserInterstedController::class,'getUserIntersted']);
+Route::post('/InterstedUser/add',[UserInterstedController::class,'addUserInterstend']);
 
 /////////////////////////////////////////////////////////////////////////////
 Route::get('/category',[CategoryController::class,'index']);
-Route::post('/category/adduser',[CategoryController::class,'addUserCategory']);
+// Route::post('/category/adduser',[CategoryController::class,'addUserCategory']);
 
 Route::post('/category/insert',[CategoryController::class,'create']);
 Route::put('/category/update',[CategoryController::class,'update']);
@@ -131,7 +131,6 @@ Route::get('/hotel',[HotelInfoController::class,'index']);
 Route::post('/hotel/createHotel',[HotelInfoController::class,'create']);
 Route::put('/hotel/updateHotel',[HotelInfoController::class,'update']);
 Route::delete('/hotel/removeHotel/{id}',[HotelInfoController::class,'destroy']);
-
 
 // review Hotel
 Route::get('/hotel/review/{idHotel}',[ReviewHotelController::class,'index']);

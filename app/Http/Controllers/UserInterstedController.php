@@ -32,11 +32,11 @@ class UserInterstedController extends Controller
         {
             $userIntersted = User_Intersted::create([
                 "userID"=> $userID,
-                "interstedsId"=>$value,
+                "categoryId"=>$value,
             ]);
         }
     return    $this->apiResponse(
-        null,
+        $userIntersted ,
         "successfuly",
         201
     ) ;

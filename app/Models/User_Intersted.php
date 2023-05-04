@@ -12,6 +12,7 @@ class User_Intersted extends Model
         'userID',
         "categoryId"
     ];
+    public $timestamps = false;
     public function user()
     {
         return $this->belongsTo(User::class , "userID");
@@ -20,4 +21,6 @@ class User_Intersted extends Model
     {
         return $this->belongsTo(Category::class , 'categoryId');
     }
+
+
 }
