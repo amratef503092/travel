@@ -21,7 +21,7 @@ class HotelInfo extends Model
     protected $casts = [
         'images' => 'array',
         'location' => 'array',
-        'OPTIONS' => 'array'
+        'OPTIONS' => 'array',
     ];
     public function reviewHotel()
     {

@@ -31,7 +31,15 @@ class RoomsController extends Controller
     public function create(Request $request)
     {
         //
-        $rooms = Room::create($request->all());
+        $rooms = Room::create([
+            "Hotel_id" => $request->Hotel_id,
+            "numnberOfBeds" => $request->numnberOfBeds,
+            "booked" => $request->booked,
+            "priceperDay" => $request->priceperDay,
+            "images" => $request->images,
+            "descripions" => $request->descripions,
+
+        ]);
         return $rooms;
 
     }

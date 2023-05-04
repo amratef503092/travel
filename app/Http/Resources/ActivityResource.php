@@ -25,9 +25,9 @@ class ActivityResource extends JsonResource
             "category"=>$this->category,
             "city"=>$this->city,
             'hotel_id'=>$this->hotel,
+            "location"=>$this->location,
+            "images"=>$this->images,
             "review"=>ReviewResource::collection($this->review),
-
-
 
         ];
     }

@@ -31,8 +31,16 @@ class HotelInfoController extends Controller
         Request $request,
     )
     {
-        $hotelInfo = HotelInfo::create($request->all());
-        return $this->apiResponse($hotelInfo ,"successfuly" , 200);
+        $hotelInfo = HotelInfo::create([
+            "images"=>$request->images,
+            "hotel_id"=>$request->hotel_id,
+            "hotel_name"=>$request->hotel_name,
+            "type_of_room"=>$request->type_of_room,
+            "city_id"=>$request->city_id,
+            "location"=> $request->location,
+            "OPTIONS"=>$request->OPTIONS,
+        ]);
+        return $this->apiResponse($hotelInfo,"successfuly" , 200);
         //
     }
     public function update(

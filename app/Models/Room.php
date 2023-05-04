@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
-{ protected
+{
+     protected
     $casts = [
     'images' => 'array',
 ];

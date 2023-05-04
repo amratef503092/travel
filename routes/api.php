@@ -107,7 +107,9 @@ Route::delete('/category/delete/{id}',[CategoryController::class,'delete']);
 // activities done
 /////////////////////////////////////////////////////////////////////////////
 Route::get('/activiy',[ActivityController::class,'index']);
-Route::post('/activiy/insert',[ActivityController::class,'create']);
+
+    Route::post('/activiy/insert',[ActivityController::class,'create']);
+
 Route::put('/activiy/update/{id}',[ActivityController::class,'update']);
 Route::delete('/activiy/delete/{id}',[ActivityController::class,'delete']);
 /////////////////////////////////////////////////////////////////////////////

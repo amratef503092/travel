@@ -25,7 +25,21 @@ class ActivityController extends Controller
     public function create(Request $request)
     {
         $activity = new Activity();
-        $activity  =  $activity::create($request->all());
+
+        $activity  =  $activity::create([
+            "activityName" => $request->activityName,
+            "activityPrice" => $request->activityPrice,
+            "description" => $request->description,
+            "openTime" => $request->openTime,
+            "closeTime" => $request->closeTime,
+            "location" =>$request->location,
+            "category_id" => $request->category_id,
+            "hotel_id" => $request->hotel_id,
+            "city_id" => $request->city_id,
+            "images" => $request->images,
+
+
+        ]);
         return $this->apiResponse($activity ,"Successfuly",200);
     }
     public function update(Request $request , $id)

@@ -21,6 +21,10 @@ class Activity extends Model
     'city_id',
     'hotel_id',
 ];
+protected $casts = [
+    'images' => 'array',
+    'location' => 'array',
+];
 
     public function category()
     {
