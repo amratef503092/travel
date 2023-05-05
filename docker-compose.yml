@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 services:
   # PHP Service
     php:
@@ -22,14 +22,15 @@ services:
   # Database Server
     database:
         image: mysql:8.0.28
+        container_name: my-mysql
         restart: always   
         ports:
             - 33306:3306
         environment:
-            - MYSQL_DATABASE=${DB_DATABASE}
-            - MYSQL_USER=${DB_USERNAME}
-            - MYSQL_PASSWORD=${DB_PASSWORD}
-            - MYSQL_ROOT_PASSWORD=secret
+            MYSQL_DATABASE: graduated
+            MYSQL_USER: my_user
+            MYSQL_PASSWORD: my_password
+            MYSQL_ROOT_PASSWORD: my_root_password
         volumes:
             - db-data:/var/lib/mysql
   # Create phpmyadmin service to view the database in the GUI
@@ -43,6 +44,9 @@ services:
             - MYSQL_USER=${DB_USERNAME}
             - MYSQL_PASSWORD=${DB_PASSWORD}
             - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+
+        depends_on:
+            - database    
 
 volumes:
     db-data: ~
