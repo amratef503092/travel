@@ -31,6 +31,9 @@ class User extends Authenticatable implements JWTSubject , MustVerifyEmail
         'status',
         'email_verified_at',
         'nationality',
+        'location',
+        'birthday',
+        "profile_image"
     ];
 
     /**
@@ -41,6 +44,10 @@ class User extends Authenticatable implements JWTSubject , MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    protected $casts = [
+        'location' => 'array',
     ];
 
     /**

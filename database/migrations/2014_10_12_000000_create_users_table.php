@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->string('nationality');
             $table->string('status');
-            $table->string('location')->nullable();
+            $table->json('location')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->string('profile_image')->nullable();

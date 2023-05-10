@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\HotelInfoResource;
+use App\Models\city;
 use App\Models\HotelInfo;
+use App\Models\hotels;
 use App\Models\ReviewHotel;
 use Illuminate\Http\Request;
 
@@ -31,6 +33,18 @@ class HotelInfoController extends Controller
         Request $request,
     )
     {
+
+        $hotelId = hotels::find($request->hotel_id);
+        $cityID = city ::find($request->city_id);
+        if(!$cityID)
+        {
+            return $this->apiResponse(null,"city not found" ,404) ;
+        }
+        if(!$hotelId)
+        {
+            return $this->apiResponse(null,"hotel not found" ,404) ;
+        }
+
         $hotelInfo = HotelInfo::create([
             "images"=>$request->images,
             "hotel_id"=>$request->hotel_id,
@@ -47,7 +61,12 @@ class HotelInfoController extends Controller
         Request $request,
     )
     {
+
         $hotel = HotelInfo::find($request->id);
+        if(!$hotel)
+        {
+            return $this->apiResponse(null,"hotel not found" ,404) ;
+        }
         $hotel = $hotel->update($request->all());
         return $this->apiResponse($hotel ,"successfuly" , 200);
         //

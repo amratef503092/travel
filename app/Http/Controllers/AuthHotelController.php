@@ -32,10 +32,10 @@ class AuthHotelController extends Controller
 
         try {
             if (!$token = Auth::guard('hotel-api')->attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
+                return response()->json(['message' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return response()->json(['message' => 'could_not_create_token'], 500);
         }
         $hotel = hotels::where('email', $request->email)->first();
 

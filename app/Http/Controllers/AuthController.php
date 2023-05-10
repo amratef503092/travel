@@ -16,6 +16,7 @@ use App\Notifications\EmailVerificationNotification;
 use App\Models\VrifyEmail;
 class AuthController extends Controller
 {
+    use apiRsponseFormate;
     //
     public function __construct() {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
@@ -34,7 +35,7 @@ class AuthController extends Controller
             return response()->json($validator->errors(), 422);
         }
         if (! $token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
         return $this->createNewToken($token);
     }
@@ -48,36 +49,36 @@ class AuthController extends Controller
             'nationality'=>'required',
             'location'=>'required',
             'profile_image'=>'required',
+            'birthday'=> 'required'
         ]);
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+        if($validator->fails())
+        {
+            return $this->apiResponse(null,$validator->errors()->first(),422);
         }
         $user = User::create(
             array_merge(
                     $validator->validated(),
-                    ['password' => bcrypt($request->password)]
+                    ['password' => bcrypt($request->password) ,
+                    'location'=>json_decode($request->location),
+                    ]
                 ));
-                $date = date('Y-m-d H:i:s');
-                $otp = $this->generateOtp();
-                $data = 'Mail Verification';
+                // $date = date('Y-m-d H:i:s');
+                // $otp = $this->generateOtp();
+                // $data = 'Mail Verification';
                 // send otp
-                Mail::send('mail', ['data' => $data, 'otp' => $otp],
-                function (Message $message) use ($request) {
-                    $message->to($request->email);
-                    $message->subject('Mail Verification');
-                });
-                VerifyEmail::create([
-                    'email'=>$request->email,
-                    'otp' => $otp,
-                    'created_at' => $date,
-                    'updated_at' => $date,
-                ]);
+                // Mail::send('mail', ['data' => $data, 'otp' => $otp],
+                // function (Message $message) use ($request) {
+                //     $message->to($request->email);
+                //     $message->subject('Mail Verification');
+                // });
+                // VerifyEmail::create([
+                //     'email'=>$request->email,
+                //     'otp' => $otp,
+                //     'created_at' => $date,
+                //     'updated_at' => $date,
+                // ]);
                 // send otp end
-            return response()->json([
-            'message' => 'User successfully registered',
-            "meg"=>'please Cheack ur Email',
-            'user' => $user
-        ], 201);
+            return $this->apiResponse($user,'User Register Successfully',200);
     }
     public function logout()
     {

@@ -17,7 +17,7 @@ class HotelInfoReviewResource extends JsonResource
         return
         [
             'id'=>$this->id,
-            'Avarege_Score'=>$this->reviewHotel->avg('rate'),
+            'Avarege_Score'=>$this->reviewHotel->avg('rate')??0,
             'hotel_name'=>$this->hotel_name,
             'hotel_Manager'=>$this->hotelManager,
             'city_id'=>$this->city_id,

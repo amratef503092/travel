@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BookedActivityResource;
+use App\Models\Activity;
 use App\Models\BookedActivity;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Validator;
 
 class BookedActivityController extends Controller
 {
@@ -25,6 +29,9 @@ class BookedActivityController extends Controller
     {
         //
         $bookedActivity = BookedActivity::find($id);
+        if (!$bookedActivity) {
+            return $this->apiResponse(null, "bookedActivity not found", 404);
+        }
         $bookedActivity = new BookedActivityResource(BookedActivity::find($id));
         return  $this->apiResponse($bookedActivity , "Successfully" , 200);
     }
@@ -36,7 +43,20 @@ class BookedActivityController extends Controller
      */
     public function bookedActivity(Request $request)
     {
-        //
+
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'exists:App\Models\User,id',
+            'activity_id' =>
+            [
+                'required',
+                Rule::exists(Activity::class, 'id'),
+            ],
+            'date' => 'required',
+            'number_of_people' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return $this->apiResponse(null, $validator->errors()->first(), 404);
+        }
         $bookedActivity = BookedActivity::create($request->all());
         $bookedActivity = new BookedActivityResource($bookedActivity);
         return $this->apiResponse($bookedActivity ,"booked Successfuly" , 201);

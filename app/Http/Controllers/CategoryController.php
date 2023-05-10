@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Validator;
 
 class CategoryController extends Controller
 {
@@ -42,6 +43,13 @@ class CategoryController extends Controller
         // search id in data base
         // $category = Category::find($id);
         // $category = Category::where('id',$id);
+       $validator =   Validator::make($request->all(),[
+            'id'=>'required|exists:categories,id',
+            'name'=>'required'
+        ]);
+        if($validator->fails()){
+            return $this->apiResponse(null , $validator->errors()->first() , 404);
+        }
         $category = Category::find($request->id);
         $category->name = $request->name;
         $result=$category->save();
@@ -56,17 +64,16 @@ class CategoryController extends Controller
         // $category = Category::find($id);
         // $category = Category::where('id',$id);
         $category = Category::findorFail($id)->delete();
-
         return ["result"=>"record is deleted"];
 
 
     }
     public function addUserCategory(Request $request)
     {
-        // $request->validate([
-        //     'categoryID' => 'required',
-        //     'user_id' => 'required',
-        // ]);
+        $validate = Validator::make($request->all(), [
+            'category' => 'required',
+            'user_id' => 'required',
+        ]);
         $categoryID = $request->category;
         $user_id = $request->user_id;
         // foreach ($categoryID as $category) {

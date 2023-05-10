@@ -6,6 +6,7 @@ use App\Http\Resources\BookingRoomResource;
 use App\Models\BookingRoom;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeUnit\FunctionUnit;
+use Validator;
 
 class BookingRoomController extends Controller
 {
@@ -36,7 +37,34 @@ class BookingRoomController extends Controller
     }
     public Function createBookingRoom(Request $request)
     {
+      $validator =  Validator::make($request->all() ,
+      (
+        [
+            'hotel_info_id' => [
+                'required',
+                'exists:App\Models\HotelInfo,id',
 
+            ],
+            'room_id' => [
+                'required',
+                'exists:App\Models\Room,id',
+
+            ],
+            'user_id' => [
+                'required',
+                'exists:App\Models\User,id',
+
+            ],
+            'num_of_nights' => 'required',
+            'num_of_guests' => 'required',
+            'total_price' => 'required',
+            'check_in' => 'required',
+            'check_out' => 'required',
+        ]));
+        if($validator->fails())
+        {
+            return $this->apiResponse(null , $validator->errors()->first() , 404);
+        }
         $bookingRoom = BookingRoom::create([
             'hotel_info_id' => $request->hotel_info_id,
             'room_id' => $request->room_id,
