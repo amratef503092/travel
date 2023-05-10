@@ -14,6 +14,6 @@ class RateResource extends JsonResource
      */
     public function toArray($request)
     {
-        return $this->rate;
+        return $this->rate??0;
     }
 }
