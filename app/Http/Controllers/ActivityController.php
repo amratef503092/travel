@@ -10,7 +10,7 @@ use App\Models\city;
 use App\Models\hotels;
 use App\Models\ReviewActivity;
 use Illuminate\Http\Request;
-
+use Validator;
 class ActivityController extends Controller
 {
     use apiRsponseFormate;
@@ -65,10 +65,31 @@ class ActivityController extends Controller
     public function update(Request $request , $id)
     {
 
-        //
-        // search id in data base
-        // $category = Category::find($id);
-        // $category = Category::where('id',$id);
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'activityName' => 'required',
+                'activityPrice' => 'required',
+                'description' => 'required',
+                'openTime' => 'required',
+                'closeTime' => 'required',
+                'location' => 'required',
+                'city_id' =>  'required:exists:cities,id',
+                'images' => 'required',
+                'category_id' => [
+                    'required',
+                    'exists:categories,id',
+
+                ],
+
+            ]
+
+        );
+        if($validator->fails())
+        {
+            return $this->apiResponse(null , $validator->errors()->first() , 404);
+        }
         $activity = Activity::find($id);
         if(!$activity)
         {
@@ -88,10 +109,17 @@ class ActivityController extends Controller
     public function delete($id)
     {
 
-        $activity = Activity::find($id);
-
-        $activity->delete($id);
+        try{
+            $activity = Activity::find($id);
+            if(!$activity)
+            {
+                return $this->apiResponse(null , "Not found" , 404);
+            }
+            $activity->delete();
         return $this->apiResponse($activity , "Delete Succesfuly" , 200);
+        } catch (\Exception $e) {
+            return $this->apiResponse(null , $e->getMessage() , 400);
+        }
 
     }
 

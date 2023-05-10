@@ -15,6 +15,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class hotels extends Authenticatable  implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
+
 protected $table = 'hotels';
 protected $primaryKey = 'id';
 protected $fillable =[

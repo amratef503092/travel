@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text("closeTime");
             $table->json("location");
             $table->json("images");
+            $table->softDeletes();
             $table->foreignId('hotel_id')->references('id')->on('hotels');
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('city_id')->constrained('cities');

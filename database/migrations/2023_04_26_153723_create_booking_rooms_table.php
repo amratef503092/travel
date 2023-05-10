@@ -23,6 +23,8 @@ return new class extends Migration
             $table->integer('num_of_guests');
             $table->double('total_price');
             $table->date('check_in');
+            $table->softDeletes();
+
             $table->date('check_out');
             $table->string('status')->default('pending');
             $table->string('payment_status')->default('pending');

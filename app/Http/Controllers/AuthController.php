@@ -59,7 +59,7 @@ class AuthController extends Controller
             array_merge(
                     $validator->validated(),
                     ['password' => bcrypt($request->password) ,
-                    'location'=>json_decode($request->location),
+                    'location'=>$request->location,
                     ]
                 ));
                 // $date = date('Y-m-d H:i:s');

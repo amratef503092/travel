@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->integer("rate");
             $table->text("comment");
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }

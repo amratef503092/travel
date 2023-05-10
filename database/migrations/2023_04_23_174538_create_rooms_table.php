@@ -21,6 +21,7 @@ return new class extends Migration
             $table->double("priceperDay");
             $table->string("descripions");
             $table->json("images");
+            $table->softDeletes();
 
             $table->timestamps();
         });

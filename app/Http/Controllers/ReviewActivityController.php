@@ -26,7 +26,7 @@ class ReviewActivityController extends Controller
         $validator =  Validator::make($request->all(),[
             'activity_id'=>'required|exists:activities,id',
             'user_id'=>'required|exists:users,id',
-            'review'=>'required',
+            'comment'=>'required',
             'rate'=>'required',
         ]);
         if($validator->fails()){

@@ -63,8 +63,14 @@ class CategoryController extends Controller
         // search id in data base
         // $category = Category::find($id);
         // $category = Category::where('id',$id);
-        $category = Category::findorFail($id)->delete();
-        return ["result"=>"record is deleted"];
+        try{
+            $category = Category::findorFail($id)->delete();
+
+            return ["result"=>"record is deleted"];
+        } catch(\Exception $e){
+            return ["result"=>"record is not deleted"];
+        }
+
 
 
     }

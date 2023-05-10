@@ -18,7 +18,8 @@ class ReviewHotelResource extends JsonResource
         // return parent::toArray($request);
 
 
-        return [
+        return
+        [
           "rate"=> $this->rate,
          "comment"=>$this->comments,
          "userInfo"=>$this->user,

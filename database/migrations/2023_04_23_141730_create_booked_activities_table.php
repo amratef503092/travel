@@ -21,6 +21,8 @@ return new class extends Migration
             $table->foreignId("user_id")->constrained("users");
             $table->integer("number_of_people");
             $table->timestamp("date");
+            $table->softDeletes();
+
             $table->timestamps();
         });
     }

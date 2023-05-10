@@ -8,6 +8,7 @@ use App\Models\HotelInfo;
 use App\Models\hotels;
 use App\Models\ReviewHotel;
 use Illuminate\Http\Request;
+use Validator;
 
 class HotelInfoController extends Controller
 {
@@ -21,7 +22,10 @@ class HotelInfoController extends Controller
     {
         //
         $hotelInfo = HotelInfo::get();
-        return $this->apiResponse(HotelInfoResource::collection($hotelInfo) ,"successfuly" , 200);
+        return $this->apiResponse(
+        HotelInfoResource::collection($hotelInfo)
+        ,"successfuly" , 200
+        );
     }
 
     /**
@@ -66,6 +70,14 @@ class HotelInfoController extends Controller
         if(!$hotel)
         {
             return $this->apiResponse(null,"hotel not found" ,404) ;
+        }
+        $validator = Validator::make($request->all(), [
+            'hotel_id' => 'exists:App\Models\hotels,id',
+            'city_id' => 'exists:App\Models\city,id',
+        ]);
+        if($validator->fails())
+        {
+            return $this->apiResponse(null,$validator->errors()->first() ,404) ;
         }
         $hotel = $hotel->update($request->all());
         return $this->apiResponse($hotel ,"successfuly" , 200);
@@ -124,7 +136,12 @@ class HotelInfoController extends Controller
     {
         //
         $hotelInfo = HotelInfo::find($id);
+        if(!$hotelInfo)
+        {
+            return $this->apiResponse(null,"hotel not found" ,404) ;
+        }
         $hotelInfo->delete();
         return $this->apiResponse($hotelInfo ,"successfuly" , 200);
+
     }
 }
