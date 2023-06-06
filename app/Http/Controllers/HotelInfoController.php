@@ -56,6 +56,7 @@ class HotelInfoController extends Controller
             "type_of_room"=>$request->type_of_room,
             "city_id"=>$request->city_id,
             "location"=> $request->location,
+            "description"=>$request->description,
             "OPTIONS"=>$request->OPTIONS,
         ]);
         return $this->apiResponse($hotelInfo,"successfuly" , 200);

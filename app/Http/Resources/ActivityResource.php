@@ -27,6 +27,7 @@ class ActivityResource extends JsonResource
             'hotel_id'=>$this->hotel,
             "location"=>$this->location,
             "images"=>$this->images,
+            "rate"=> $this->review->avg('rate'),
             "review"=>ReviewResource::collection($this->review),
 
         ];

@@ -23,11 +23,19 @@ class RoomsController extends Controller
 
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function roomOfHotel($hotelId)
+    {
+        //
+        $rooms = RoomResource::collection(Room::all()->where("Hotel_id",$hotelId));
+        return $this->apiResponse($rooms,"successfuly",200);
+
+    }
     public function create(Request $request)
     {
         //

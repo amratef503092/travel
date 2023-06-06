@@ -53,8 +53,9 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
-
-
+    Route::post('/user/favorites/{activity}', [AuthController::class, 'toggleFavoriteActivity']);
+    Route::post('/user/update', [AuthController::class, 'userProfileUpeate']);
+    Route::post('/user/update-password', [AuthController::class, 'updatePassword']);
 
 });
 Route::group([
@@ -143,10 +144,11 @@ Route::delete('/hotel/review/delete/{id}',[ReviewHotelController::class,'delete'
 //////////////////// done ///////////////////////////////////
 Route::get('/hotel/rooms',[RoomsController::class,'index']);
 Route::post('/hotel/rooms/insert',[RoomsController::class,'create']);
+Route::get('/hotel/rooms/{hotelId}',[RoomsController::class,'roomOfHotel']);
+
 Route::get('/hotel/rooms/update/{id}',[RoomsController::class,'edit']);
 Route::delete('/hotel/rooms/delete/{id}',[RoomsController::class,'destroy']);
 //////////////////// done ///////////////////////////////////
-
 
 // send Email
 Route::get('send/Email',

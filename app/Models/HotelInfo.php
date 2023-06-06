@@ -19,6 +19,7 @@ class HotelInfo extends Model
         'OPTIONS',
         'city_id',
         'type_of_room',
+        'description',
 
     ];
     protected $casts = [
@@ -38,5 +39,9 @@ class HotelInfo extends Model
     public function hotelManager()
     {
         return $this->belongsTo(hotels::class , "hotel_id");
+    }
+    public function city()
+    {
+        return $this->belongsTo(city::class , "city_id");
     }
 }

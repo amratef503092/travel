@@ -17,14 +17,13 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('hotel_info_id')->references('id')->on('hotel_infos');
-            $table->foreignId('room_id')->constrained('rooms');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('room_id')->references('id')->on('rooms');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->integer('num_of_nights');
             $table->integer('num_of_guests');
             $table->double('total_price');
             $table->date('check_in');
             $table->softDeletes();
-
             $table->date('check_out');
             $table->string('status')->default('pending');
             $table->string('payment_status')->default('pending');

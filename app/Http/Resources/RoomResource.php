@@ -17,7 +17,7 @@ class RoomResource extends JsonResource
         return
         [
             "id"=>$this->id,
-            "hotelInfo"=>$this->hotles,
+            "hotelInfo"=>new HotelInfoResource($this->hotles),
             "numnberOfBeds"=>$this->numnberOfBeds,
             "booked"=>$this->booked==0 ?false : true,
             "priceperDay"=>$this->priceperDay,

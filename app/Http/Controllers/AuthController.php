@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendEmail;
+use App\Models\Activity;
 use App\Models\User;
 use App\Models\VerifyEmail;
 use Illuminate\Http\Request;
@@ -21,6 +22,12 @@ class AuthController extends Controller
     public function __construct() {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
+    public function toggleFavoriteActivity(Activity $activity)
+{
+    // $user = auth()->user();
+    return "Amr";
+
+}
     public function generateOtp()
     {
         $otp = rand(100000, 999999);
@@ -98,8 +105,39 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function userProfile() {
+    public function userProfile()
+    {
         return response()->json(auth()->user());
+    }
+    public function userProfileUpeate(Request $request)
+    {
+        $user = auth()->user();
+        $user->phone = $request->phone;
+        $user->nationality = $request->nationality;
+        $user->update();
+        return response()->json(auth()->user());
+    }
+    public function updatePassword(Request $request)
+    {
+
+       try{
+        try
+        {
+            $user = auth()->user();
+        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
+            return response()->json(['message' => 'User not found']);
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->update();
+        return response()->json([
+            'message' => 'Password Updated Successfully']);
+       } catch (\Illuminate\Database\QueryException $ex) {
+    $errorCode = $ex->errorInfo[1];
+    if ($errorCode == 1062) {
+        return $this->apiResponse(null, "Duplicate Entry", 404);
+    }
+}
     }
     /**
      * Get the token array structure.

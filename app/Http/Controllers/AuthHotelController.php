@@ -15,7 +15,7 @@ class AuthHotelController extends Controller
     {
 
         $data = hotels::create([
-            'Hotel_name' => $request->Hotel_name    ,
+            'Hotel_name' => $request->Hotel_name  ,
             'email' => $request->email,
             'facilities'=>$request->facilities,
             'owner_name'=>$request->owner_name,
@@ -42,7 +42,8 @@ class AuthHotelController extends Controller
         return $this->createNewToken($token);
     }
 
-    protected function createNewToken($token){
+    protected function createNewToken($token)
+    {
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',

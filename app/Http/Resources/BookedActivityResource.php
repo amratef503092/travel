@@ -17,7 +17,7 @@ class BookedActivityResource extends JsonResource
         return
         [
             "id"=>$this->id,
-            "activity"=>$this->activity,
+            "activity"=>new ActivityResource($this->activity),
             "user"=>$this->user,
             "date"=>$this->date,
             "number_of_people"=>$this->number_of_people,

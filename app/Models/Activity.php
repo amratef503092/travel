@@ -11,8 +11,8 @@ class Activity extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [
-
+    protected $fillable =
+    [
     'activityName' ,
     'activityPrice',
     'description',
@@ -49,4 +49,8 @@ protected $casts = [
     {
         return  $this->belongsTo(hotels::class,"hotel_id" );
     }
+    public function favoritedBy()
+{
+    return $this->belongsToMany(User::class, 'wish_list_user_activities', 'activity_id', 'user_id')->withTimestamps();
+}
 }

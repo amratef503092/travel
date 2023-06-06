@@ -18,18 +18,15 @@ class HotelInfoResource extends JsonResource
         [
             "id"=>$this->id,
             "hotelManager"=>$this->hotelManager,
-
-            "review"=> $this->reviewHotel->avg("rate")??0,
+            "rate"=> $this->reviewHotel->avg("rate")??0,
+            "description"=>$this->description,
             "hotel_name"=>$this->hotel_name,
             "images"=>$this->images,
             "location"=>$this->location,
             "OPTIONS"=>$this->OPTIONS,
             "type_of_room"=>$this->type_of_room,
-            "city_id"=>$this->city_id,
-
-
-
-
+            "city_id"=>$this->city,
+            "reviews"=>ReviewResource::collection($this->reviewHotel),
            ];
     }
 }

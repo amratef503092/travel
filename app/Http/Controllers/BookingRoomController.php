@@ -65,20 +65,27 @@ class BookingRoomController extends Controller
         {
             return $this->apiResponse(null , $validator->errors()->first() , 404);
         }
-        $bookingRoom = BookingRoom::create([
-            'hotel_info_id' => $request->hotel_info_id,
-            'room_id' => $request->room_id,
-            'user_id' => $request->user_id,
-            'num_of_nights' => $request->num_of_nights,
-            'num_of_guests' => $request->num_of_guests,
-            'total_price' => $request->total_price,
-            'check_in' => $request->check_in,
-            'check_out' => $request->check_out,
-            'status' => 'pending',
-            'payment_status' => 'pending',
-            'payment_method' => 'cash',
-        ]);
-        return $this->apiResponse(new BookingRoomResource($bookingRoom) , "successfuly" , 200);
+
+        try
+        {
+            $bookingRoom = BookingRoom::create([
+                'hotel_info_id' => $request->hotel_info_id,
+                'room_id' => $request->room_id,
+                'user_id' => $request->user_id,
+                'num_of_nights' => $request->num_of_nights,
+                'num_of_guests' => $request->num_of_guests,
+                'total_price' => $request->total_price,
+                'check_in' => $request->check_in,
+                'check_out' => $request->check_out,
+                'status' => 'pending',
+                'payment_status' => 'pending',
+                'payment_method' => 'cash',
+            ]);
+            return $this->apiResponse(new BookingRoomResource($bookingRoom) , "successfuly" , 200);
+
+        } catch (\Exception $e) {
+            return $this->apiResponse(null , $e->getMessage() , 404);
+        }
     }
 
 

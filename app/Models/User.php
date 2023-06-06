@@ -23,7 +23,8 @@ class User extends Authenticatable implements JWTSubject , MustVerifyEmail
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+    protected $fillable =
+    [
         'name',
         'email',
         'password',
@@ -33,7 +34,8 @@ class User extends Authenticatable implements JWTSubject , MustVerifyEmail
         'nationality',
         'location',
         'birthday',
-        "profile_image"
+        "profile_image",
+        "phone"
     ];
 
     /**
@@ -96,5 +98,9 @@ class User extends Authenticatable implements JWTSubject , MustVerifyEmail
     {
         return $this->belongsTo(User_Intersted::class);
     }
+    public function favorites()
+{
+    return $this->belongsToMany(Activity::class, 'wish_list_user_activities', 'user_id', 'activity_id')->withTimestamps();
+}
 
 }
