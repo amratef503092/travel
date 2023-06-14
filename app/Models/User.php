@@ -102,5 +102,15 @@ class User extends Authenticatable implements JWTSubject , MustVerifyEmail
 {
     return $this->belongsToMany(Activity::class, 'wish_list_user_activities', 'user_id', 'activity_id')->withTimestamps();
 }
+public function bookedActivity()
+{
+  return  $this->hasMany(BookedActivity::class , "user_id");
+}
+public function bookedRoom()
+{
+  return  $this->hasMany(BookingRoom::class , "user_id");
+}
+
+
 
 }

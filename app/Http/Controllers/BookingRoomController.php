@@ -24,7 +24,13 @@ class BookingRoomController extends Controller
     }
     public function getBookingRoomByUserId($id)
     {
-        $bookingRoom = BookingRoom::where('user_id' , $id)->get();
+        $bookingRoom = BookingRoom::where('user_id' , $id)->get()->where('check_in' , '>=', date('Y-m-d'));
+        return $this->apiResponse(BookingRoomResource::collection($bookingRoom) , "successfuly" , 200);
+    }
+    public function getBookingRoomByUserHistoryId($id)
+    {
+
+        $bookingRoom = BookingRoom::where('user_id' , $id)->get()->where('check_in' , '<', date('Y-m-d'));
         return $this->apiResponse(BookingRoomResource::collection($bookingRoom) , "successfuly" , 200);
     }
     public Function getBookingRoombyHotelID(Request $request){
@@ -81,12 +87,21 @@ class BookingRoomController extends Controller
                 'payment_status' => 'pending',
                 'payment_method' => 'cash',
             ]);
-            return $this->apiResponse(new BookingRoomResource($bookingRoom) , "successfuly" , 200);
+            return $this->apiResponse(
+                new BookingRoomResource($bookingRoom) ,
+            "successfuly" , 200);
 
         } catch (\Exception $e) {
             return $this->apiResponse(null , $e->getMessage() , 404);
         }
     }
+
+    public function getRoomUserBooking()
+    {
+        $bookingRoom = BookingRoom::all();
+        return "Amr";
+    }
+
 
 
 }

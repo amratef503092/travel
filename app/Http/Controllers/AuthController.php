@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BookingRoomResource;
 use App\Mail\SendEmail;
 use App\Models\Activity;
 use App\Models\User;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 use App\Mail\VerificationEmail;
+use App\Models\BookingRoom;
 use Validator;
 use App\Notifications\EmailVerificationNotification;
 use App\Models\VrifyEmail;
@@ -150,10 +152,11 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
+            'expires_in' => auth()->factory()->getTTL() * 60 * 60 * 24 * 30 * 12 * 10,
             'user' => auth()->user(),
         ]);
     }
+
 
 
 }

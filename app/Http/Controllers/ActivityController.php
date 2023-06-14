@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ActivityResource;
+use App\Http\Resources\BookedActivityResource;
 use App\Http\Resources\ReviewResource;
 use App\Models\Activity;
 use App\Models\Category;
@@ -80,7 +81,6 @@ class ActivityController extends Controller
                 'category_id' => [
                     'required',
                     'exists:categories,id',
-
                 ],
 
             ]
@@ -109,7 +109,8 @@ class ActivityController extends Controller
     public function delete($id)
     {
 
-        try{
+        try
+        {
             $activity = Activity::find($id);
             if(!$activity)
             {
@@ -121,6 +122,32 @@ class ActivityController extends Controller
             return $this->apiResponse(null , $e->getMessage() , 400);
         }
 
+    }
+    public function userActivityBooking()
+    {
+        $user = auth()->user();
+        if(!$user)
+        {
+            // unauthenticated
+            return $this->apiResponse(null , "Unauthorized" , 401);
+
+        }
+        // come date
+        $activity = $user->bookedActivity->where('date' , '>=' , now());
+        return $this->apiResponse(BookedActivityResource::collection($activity), "Successfuly" , 200);
+    }
+    public function userActivityHistoryBooking()
+    {
+        $user = auth()->user();
+        if(!$user)
+        {
+            // unauthenticated
+            return $this->apiResponse(null , "Unauthorized" , 401);
+
+        }
+        // come date
+        $activity = $user->bookedActivity->where('date' , '<' , now());
+        return $this->apiResponse(BookedActivityResource::collection($activity), "Successfuly" , 200);
     }
 
 }

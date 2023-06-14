@@ -16,6 +16,7 @@ class BookingRoomResource extends JsonResource
     {
         return
         [
+            "id"=>$this->id,
             "userInfo"=>$this->user,
             'roomInfo'=>$this->room,
             'num_of_nights'=>$this->num_of_nights,

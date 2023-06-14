@@ -109,7 +109,10 @@ Route::delete('/category/delete/{id}',[CategoryController::class,'delete']);
 /////////////////////////////////////////////////////////////////////////////
 Route::get('/activiy',[ActivityController::class,'index']);
 
-    Route::post('/activiy/insert',[ActivityController::class,'create']);
+Route::post('/activiy/insert',[ActivityController::class,'create']);
+Route::get('/activiy/user/activity',[ActivityController::class,'userActivityBooking']);
+Route::get('/activiy/user/activityHistoryUser',[ActivityController::class,'userActivityHistoryBooking']);
+
 
 Route::put('/activiy/update/{id}',[ActivityController::class,'update']);
 Route::delete('/activiy/delete/{id}',[ActivityController::class,'delete']);
@@ -165,6 +168,8 @@ Route::get('/hotel/rooms/getBookingRoomByUser/{id}',[BookingRoomController::clas
 Route::post('/hotel/rooms/getBookingRoombyHotelID',[BookingRoomController::class,'getBookingRoombyHotelID']);
 Route::post('/hotel/rooms/createBookingRoom',[BookingRoomController::class,'createBookingRoom']);
 Route::post('/hotel/rooms/bookRoomID',[BookingRoomController::class,'getBookingRoombyRoomID']);
+Route::get('/hotel/rooms/getUserBookingRoom',[BookingRoomController::class,'getRoomUserBooking']);
+Route::get('/hotel/rooms/getBookingRoomByUserHistory/{id}',[BookingRoomController::class,'getBookingRoomByUserHistoryId']);
 
 // verify Email
 Route::post('/email/verify',[VerifyEmailController::class,'verifyEmail']);

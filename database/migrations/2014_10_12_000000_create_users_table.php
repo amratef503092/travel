@@ -27,7 +27,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('profile_image')->nullable();
-            $table->string('phone')->nullable();
+
         });
     }
 
