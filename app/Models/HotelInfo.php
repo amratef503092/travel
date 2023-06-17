@@ -11,6 +11,9 @@ class HotelInfo extends Model
     use SoftDeletes;
 
     use HasFactory;
+        protected $searchable = ['hotel_name'];
+        protected static $logAttributes = ['hotel_name'];
+
     protected $fillable = [
         'hotel_id',
         'hotel_name',

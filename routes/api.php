@@ -137,6 +137,7 @@ Route::get('/hotel',[HotelInfoController::class,'index']);
 Route::post('/hotel/createHotel',[HotelInfoController::class,'create']);
 Route::put('/hotel/updateHotel',[HotelInfoController::class,'update']);
 Route::delete('/hotel/removeHotel/{id}',[HotelInfoController::class,'destroy']);
+Route::get('/hotel/search',[HotelInfoController::class,'search']);
 
 // review Hotel
 Route::get('/hotel/review/{idHotel}',[ReviewHotelController::class,'index']);

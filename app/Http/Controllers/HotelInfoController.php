@@ -27,6 +27,40 @@ class HotelInfoController extends Controller
         ,"successfuly" , 200
         );
     }
+    public function search(Request $request)
+    {
+        // Get search query from request
+        $query = $request->input('query');
+
+        // Perform search using HotelInfo model
+        $results = HotelInfo::where('hotel_name', 'LIKE', '%' . $query . '%')->get();
+        // If no results found, suggest similar hotel names using similarity calculation
+        if ($results->isEmpty()) {
+            $suggestions = HotelInfo::where('id', '>', 0)->get();
+
+            $suggestions = $suggestions->map(function ($item, $key) use ($query)
+            {
+                $similarity = similar_text($item->hotel_name, $query);
+                $item->similarity = $similarity;
+                return $item;
+            });
+            $suggestions =
+            $suggestions->
+            sortByDesc('similarity')->take(10);
+            return $this->apiResponse(
+                HotelInfoResource::collection($suggestions)
+                ,"suggestions" , 200
+                );
+
+
+        }
+
+        // Return results as JSON
+        return $this->apiResponse(
+            HotelInfoResource::collection($results)
+            ,"successfuly" , 200
+            );
+    }
 
     /**
      * Show the form for creating a new resource.
