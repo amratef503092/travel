@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('hotels', function (Blueprint $table) {
-            $table->string('status')->nullable();
-
+        Schema::table('users', function (Blueprint $table)
+        {
             //
+            $table->string('phone')->nullable();
         });
     }
 
@@ -27,10 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('hotels', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
-            $table->dropColumn('type');
-
         });
     }
 };
