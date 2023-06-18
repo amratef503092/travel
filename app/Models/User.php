@@ -110,6 +110,14 @@ public function bookedRoom()
 {
   return  $this->hasMany(BookingRoom::class , "user_id");
 }
+public function wishlistHotel()
+{
+    return $this->hasMany(WishlistHotel::class , );
+}
+public function wishlistActivity()
+{
+    return $this->hasMany(WishlistActivity::class , );
+}
 
 
 

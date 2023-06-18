@@ -14,6 +14,7 @@ use App\Http\Controllers\ReviewHotelController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\UserInterstedController;
 use App\Http\Controllers\VerifyEmailController;
+use App\Http\Controllers\WishlistHotelController;
 use App\Mail\SendEmail;
 use Illuminate\Support\Facades\Mail;
 
@@ -25,7 +26,10 @@ use App\Http\Controllers\CityController;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Hotels\HotelsController;
+use App\Http\Controllers\WishlistActivityController;
 use App\Models\Category;
+use App\Models\WishlistActivity;
+use App\Models\WishlistHotel;
 
 /*
 |--------------------------------------------------------------------------
@@ -183,3 +187,13 @@ Route::post('/password/verifyotp',[ForgetPasswordController::class,'verifyOtp'])
 // Ai
 Route::get('/ai',[HotelReviewForAi::class,'index']);
 Route::get('/hotelInfoReview',[HotelReviewForAi::class,'hotelInfoReview']);
+
+// whichlist
+Route::get('/wishlistHotel',[WishlistHotelController::class,'index']);
+Route::get('/addwishlistHotel/{hotel_id}',[WishlistHotelController::class,'addHotel']);
+Route::get('/removewishlistHotel/{hotel_id}',[WishlistHotelController::class,'removeHotel']);
+
+// whichlist Activity
+Route::get('/wishlistActivity',[WishlistActivityController::class,'index']);
+Route::get('/add/wishlist/activity/{activity_id}',[WishlistActivityController::class,'addActivity']);
+Route::get('/remove/ewishlist/activity/{activity_id}',[WishlistActivityController::class,'removeActivity']);

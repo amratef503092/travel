@@ -47,4 +47,8 @@ class HotelInfo extends Model
     {
         return $this->belongsTo(city::class , "city_id");
     }
+    public function wishlist()
+    {
+        return $this->hasMany(WishlistHotel::class);
+    }
 }

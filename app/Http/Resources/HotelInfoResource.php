@@ -26,6 +26,7 @@ class HotelInfoResource extends JsonResource
             "OPTIONS"=>$this->OPTIONS,
             "type_of_room"=>$this->type_of_room,
             "city_id"=>$this->city,
+            "fovourite"=>$this->wishlist->where("user_id",auth()->user()->id)->where('hotel_info_id',$this->id)->count()>0 ? true : false,
             "reviews"=>ReviewResource::collection($this->reviewHotel),
            ];
     }

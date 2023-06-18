@@ -18,10 +18,17 @@ class HotelInfoController extends Controller
      * @return \Illuminate\Http\Response
      */
     use apiRsponseFormate;
-    public function index()
+    public function index(Request $request)
     {
         //
+        $user = $request->user();
+        if(!$user)
+        {
+            return $this->apiResponse(null,"user not found" ,404) ;
+        }
+
         $hotelInfo = HotelInfo::get();
+
         return $this->apiResponse(
         HotelInfoResource::collection($hotelInfo)
         ,"successfuly" , 200

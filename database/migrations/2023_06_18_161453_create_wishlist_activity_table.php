@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wish_list_user_activities', function (Blueprint $table) {
+        Schema::create('wishlist_activity', function (Blueprint $table)
+        {
+            $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('activity_id');
-            $table->primary(['user_id', 'activity_id']);
+            $table->unsignedBigInteger('activities_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
+            $table->foreign('activities_id')->references('id')->on('activities')->onDelete('cascade');
+            $table->timestamps();
 
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wish_list_user_activities');
+        Schema::dropIfExists('wishlist_activity');
     }
 };

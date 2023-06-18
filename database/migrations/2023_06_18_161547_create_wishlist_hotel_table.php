@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wish_list_user_hotels', function (Blueprint $table) {
+        Schema::create('wishlist_hotel', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('hotel_info_id');
-            $table->primary(['user_id', 'hotel_info_id']);
+            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('hotel_info_id')->references('id')->on('hotel_infos')->onDelete('cascade');
-
+       
         });
     }
 
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wish_list_user_hotels');
+        Schema::dropIfExists('wishlist_hotel');
     }
 };
