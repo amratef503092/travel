@@ -20,7 +20,7 @@ class WishlistActivity extends Model
     {
         return $this->belongsTo(User::class , "user_id");
     }
-    public function hotelInfo()
+    public function activity()
     {
         return $this->belongsTo(Activity::class, 'activities_id');
     }

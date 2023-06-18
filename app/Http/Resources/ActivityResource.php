@@ -27,7 +27,9 @@ class ActivityResource extends JsonResource
             'hotel_id'=>$this->hotel,
             "location"=>$this->location,
             "images"=>$this->images,
-            "rate"=> $this->review->avg('rate'),
+            "rate"=> $this->review->avg('rate') ?? 0 ,
+            "fovourite"=>$this->wishlist->where("user_id",auth()->user()->id)->where('activities_id',$this->id)->count()>0 ? true : false,
+
             "review"=>ReviewResource::collection($this->review),
 
         ];

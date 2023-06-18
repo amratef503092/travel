@@ -195,5 +195,5 @@ Route::get('/removewishlistHotel/{hotel_id}',[WishlistHotelController::class,'re
 
 // whichlist Activity
 Route::get('/wishlistActivity',[WishlistActivityController::class,'index']);
-Route::get('/add/wishlist/activity/{activity_id}',[WishlistActivityController::class,'addActivity']);
-Route::get('/remove/ewishlist/activity/{activity_id}',[WishlistActivityController::class,'removeActivity']);
+Route::get('/wishlistActivity2/{activity_id}',[WishlistActivityController::class,'addActivity']);
+Route::get('/remove/wishlist/activity/{activity_id}',[WishlistActivityController::class,'removeActivity']);

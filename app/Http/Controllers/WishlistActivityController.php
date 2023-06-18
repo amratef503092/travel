@@ -21,7 +21,7 @@ class WishlistActivityController extends Controller
         $wishlist = $user->wishlistActivity()->get();
 
         return $this->apiResponse(
-            ActivityResource::collection($wishlist)
+            ActivityResource::collection($wishlist->pluck('activity'))
             ,"successfuly" , 200
             );
     }
@@ -30,11 +30,11 @@ class WishlistActivityController extends Controller
     {
         $user = $request->user();
         $activity = Activity::findOrFail($activity_id);
-        $wishlist = $user->wishlistHotel()->where('hotel_info_id', $activity_id)->first();
+        $wishlist = $user->wishlistActivity()->where('activities_id', $activity_id)->first();
         if ($wishlist) {
             return $this->apiResponse(
                null
-                ,"Hotel already in wishlist" , 200
+                ,"Activity already in wishlist" , 200
                 );
         }
         $wishlist = WishlistActivity::
@@ -53,7 +53,7 @@ class WishlistActivityController extends Controller
         $user = $request->user();
         $wishlist = $user->wishlistActivity()->where('activities_id', $activity_id)->firstOrFail();
         $wishlist->delete();
-        return response()->json(['message' => 'Hotel removed from wishlist.']);
+        return response()->json(['message' => 'activitie removed from wishlist.']);
     }
     /**
      * Store a newly created resource in storage.

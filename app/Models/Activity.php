@@ -53,4 +53,8 @@ protected $casts = [
 {
     return $this->belongsToMany(User::class, 'wish_list_user_activities', 'activity_id', 'user_id')->withTimestamps();
 }
+public function wishlist()
+{
+    return $this->hasMany(WishlistActivity::class   , "activities_id");
+}
 }
