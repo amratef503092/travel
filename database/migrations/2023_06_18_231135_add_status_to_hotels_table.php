@@ -29,7 +29,7 @@ return new class extends Migration
     {
         Schema::table('hotels', function (Blueprint $table) {
             //
-            $table->dropColumn('type');
+            $table->dropColumn('status');
 
         });
     }
