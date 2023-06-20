@@ -56,7 +56,7 @@ class AuthController extends Controller
             'password' => 'required|string|confirmed|min:6',
             'status'=>'required',
             'nationality'=>'required',
-            'location'=>'required',
+            // 'location'=>'required',
             'profile_image'=>'required',
             'birthday'=> 'required'
         ]);
@@ -68,7 +68,7 @@ class AuthController extends Controller
             array_merge(
                     $validator->validated(),
                     ['password' => bcrypt($request->password) ,
-                    'location'=>$request->location,
+                    'location'=> ['29.9826692' ,'31.285171'],
                     ]
                 ));
                 // $date = date('Y-m-d H:i:s');
