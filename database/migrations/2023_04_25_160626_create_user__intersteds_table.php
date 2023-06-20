@@ -18,9 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('userID');
             $table->unsignedBigInteger('categoryId');
             $table->primary(['userID', 'categoryId']);
+
             $table->foreign("userID")->references(
-                "id"
-            )->on("users");
+                "id")->on("users");
             $table->foreign("categoryId")->references(
                 "id"
             )->on("categories");
